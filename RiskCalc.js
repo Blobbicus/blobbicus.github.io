@@ -154,3 +154,16 @@ function collapseContent(btn) {
 		//console.log(`Opened collapsible! ${content.scrollHeight}`);
 	}
 }
+
+function resetCalc() {
+	
+	for(let i = 0; i < numOfTests; i++) {
+		var name = tests[i].name;
+		var radio;
+		if( radio = document.querySelector(`input[type=radio][name=${name}]:checked`) ) {
+			radio.checked = false;
+		}
+		testValue[i] = 0;
+	}
+	updateRisk();
+}

@@ -60,6 +60,16 @@ header p {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+.reset_btn {
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  margin-left: 120px;
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
 /* End of sidebar style */
 
 /* Style of button set */
