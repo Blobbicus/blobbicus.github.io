@@ -1,0 +1,241 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+header {
+  padding: 20px 0;
+}
+
+header .row,
+footer .row {
+  display: flex;
+  align-items: center;
+}
+
+header nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+header p {
+  padding: 0 20px;
+  margin: 0;
+}
+
+/* Style of sidebar with results */
+.resultbar {
+  width: 300px;
+  position: fixed;
+  border-radius: 40px;
+  float: left;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: blue;
+  color: white;
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 40px;
+}
+.resultRow {
+  justify-content: right;
+  padding-left: 20px;
+  font-size: 30px;
+
+}
+.resultBox {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: lightgrey;
+  color: black;
+  border-radius: 10px;
+  width: 70px;
+  min-height: 40px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+/* End of sidebar style */
+
+/* Style of button set */
+.buttonSet {
+  background: blue;
+  /*border: 2px solid black;*/
+  height: 75px;
+  width: 550px;
+  padding: 0px;
+  margin-bottom: 0px;
+  margin-top: -15px;
+  margin-right: 100px;
+
+  border-radius: 30px;
+}
+.buttonSet h3 {
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+}
+.buttonRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* End of button set */
+
+/* Style custom radio buttos */
+.radioButtons {
+  /*display: inline-flex;
+  justify-content: flex-start;*/
+
+  heigth: 25px;
+  width: 140px;
+
+  position: relative;
+  padding-top: 0px;
+  margin-left:  10px;
+  margin-right: 10px;
+  font-size: 16;
+  cursor: pointer;
+}
+.radioButtons input {
+  position: absolute;
+  opacity:  0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  position: absolute;
+  height: 25px;
+  width: 140px;
+  font-size: 16px;
+  border-radius: 10px;
+  padding-top: 2px;
+
+  text-align: center;
+
+  background-color: white;
+}
+.radioButtons:hover input[value="1"] ~ .checkmark {
+  background-color: lightgreen;
+}
+.radioButtons:hover input[value="2"] ~ .checkmark {
+  background-color: yellow;
+}
+.radioButtons:hover input[value="3"] ~ .checkmark {
+  background-color: red;
+}
+.buttonRow input[value="1"]:checked ~ .checkmark {
+  background-color: lightgreen;
+}
+.buttonRow input[value="2"]:checked ~ .checkmark {
+  background-color: yellow;
+}
+.buttonRow input[value="3"]:checked ~ .checkmark {
+  background-color: red;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+
+  padding-top: 20px;
+}
+.buttonRow input:checked ~ .checkmark:after {
+  display: inline-block;
+}
+/* End of Radio button style */
+
+/* Tooltip container */
+.tooltipp {
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+/* Tooltip text */
+.tooltipp .tooltiptext {
+  font-size: 14px;
+
+  visibility: hidden;
+  width: 120px;
+  background-color: grey;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  left: 125%;
+  top: 10%;
+  margin-left: -300px;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipp:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+/* Tooltip style ends here */
+
+/* Collapsible style */
+.collapsible {
+  background-color: lightgrey;
+  cursor: pointer;
+  width: 60%;
+  border: none;
+  text-align: center;
+  font-size: 24;
+}
+.collapsible_open, .collapsible:hover {
+  background-color: grey;
+}
+.collapsible:after {
+  content: '\02795';
+  font-size: 13px;
+  color: black;
+  float: right;
+  margin-left: 5px;
+}
+.collapsible_open:after {
+  content: '\2796';
+}
+.collapsible_content {
+  background-color: lightgrey;
+  /*display: block;*/
+  overflow: hidden;
+  width:60%;
+  padding: 0px;
+
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+/* End collapsible style */
+
+footer {
+  font-size: 12px;
+  padding: 20px 0;
+}
+
+footer .col-sm-8 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer li img {
+  width: 32px;
+  height: 32px;
+}
