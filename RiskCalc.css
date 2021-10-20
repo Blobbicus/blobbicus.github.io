@@ -1,27 +1,118 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+
 }
 
-header {
-  padding: 20px 0;
-}
-
-header .row,
-footer .row {
+/*
+.container {
+  max-width: 80%;
   display: flex;
+  justify-content: center;
+} */
+
+/* table styling start */
+table {
+  width: 1px;
+  height: 1px;
+  border-spacing: 0px;
+}
+tr {
+  height: 30px;
+}
+.table > tbody > tr > th,
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+.btn-row > .title-cell {
+  vertical-align: middle;
+  padding-left: 15px;
+}
+.title-cell {
+  font-size: 18px;
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+.header-cell {
+  vertical-align: middle;
+  text-align: center;
+}
+.title-row > th {
+  height: 60px;
+  font-size: 20px;
+  background-color: #203764;
+  color: white;
+  text-align: center;
+}
+.result-cell {
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+/* table styling end */
+
+/* Style custom radio buttons */
+.radioButton {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  cursor: pointer;
+  display: block;
+}
+.radioButton input {
+  position: absolute;
+  opacity:  0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  position: absolute;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  font-size: 14px;
+  padding: 0px;
+  margin: 0px;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
-
-header nav {
-  display: flex;
-  justify-content: flex-end;
+.radioButton:hover input[value="1"] ~ .checkmark {
+  background-color: lightgreen;
 }
-
-header p {
-  padding: 0 20px;
-  margin: 0;
+.radioButton:hover input[value="2"] ~ .checkmark {
+  background-color: yellow;
 }
+.radioButton:hover input[value="3"] ~ .checkmark {
+  background-color: red;
+}
+.btn-cell input[value="1"]:checked ~ .checkmark {
+  background-color: lightgreen;
+  font-weight: bold;
+}
+.btn-cell input[value="2"]:checked ~ .checkmark {
+  background-color: yellow;
+  font-weight: bold;
+}
+.btn-cell input[value="3"]:checked ~ .checkmark {
+  background-color: red;
+  font-weight: bold;
+}
+.radioButton:hover input:checked ~ .checkmark {
+  background-color: white;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* End of Radio button style */
+
 
 /* Style of sidebar with results */
 .resultbar {
@@ -43,7 +134,6 @@ header p {
   justify-content: right;
   padding-left: 20px;
   font-size: 30px;
-
 }
 .resultBox {
   display: inline-flex;
@@ -69,167 +159,8 @@ header p {
   border: 1px solid black;
   border-radius: 5px;
 }
-
 /* End of sidebar style */
 
-/* Style of button set */
-.buttonSet {
-  background: blue;
-  /*border: 2px solid black;*/
-  height: 75px;
-  width: 550px;
-  padding: 0px;
-  margin-bottom: 0px;
-  margin-top: -15px;
-  margin-right: 100px;
-
-  border-radius: 30px;
-}
-.buttonSet h3 {
-  font-size: 20px;
-  color: white;
-  text-align: center;
-  padding-top: 10px;
-}
-.buttonRow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* End of button set */
-
-/* Style custom radio buttos */
-.radioButtons {
-  /*display: inline-flex;
-  justify-content: flex-start;*/
-
-  heigth: 25px;
-  width: 140px;
-
-  position: relative;
-  padding-top: 0px;
-  margin-left:  10px;
-  margin-right: 10px;
-  font-size: 16;
-  cursor: pointer;
-}
-.radioButtons input {
-  position: absolute;
-  opacity:  0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-.checkmark {
-  position: absolute;
-  height: 25px;
-  width: 140px;
-  font-size: 16px;
-  border-radius: 10px;
-  padding-top: 2px;
-
-  text-align: center;
-
-  background-color: white;
-}
-.radioButtons:hover input[value="1"] ~ .checkmark {
-  background-color: lightgreen;
-}
-.radioButtons:hover input[value="2"] ~ .checkmark {
-  background-color: yellow;
-}
-.radioButtons:hover input[value="3"] ~ .checkmark {
-  background-color: red;
-}
-.buttonRow input[value="1"]:checked ~ .checkmark {
-  background-color: lightgreen;
-}
-.buttonRow input[value="2"]:checked ~ .checkmark {
-  background-color: yellow;
-}
-.buttonRow input[value="3"]:checked ~ .checkmark {
-  background-color: red;
-}
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-
-  padding-top: 20px;
-}
-.buttonRow input:checked ~ .checkmark:after {
-  display: inline-block;
-}
-/* End of Radio button style */
-
-/* Tooltip container */
-.tooltipp {
-  font-size: 30px;
-  color: white;
-  text-align: center;
-  position: relative;
-}
-/* Tooltip text */
-.tooltipp .tooltiptext {
-  font-size: 14px;
-
-  visibility: hidden;
-  width: 120px;
-  background-color: grey;
-  color: black;
-  text-align: center;
-  padding: 5px;
-  border-radius: 6px;
-  /* Position the tooltip text */
-  position: absolute;
-  z-index: 1;
-  left: 125%;
-  top: 10%;
-  margin-left: -300px;
-  /* Fade in tooltip */
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltipp:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
-/* Tooltip style ends here */
-
-/* Collapsible style */
-.collapsible {
-  background-color: lightgrey;
-  cursor: pointer;
-  width: 60%;
-  border: none;
-  text-align: center;
-  font-size: 24;
-}
-.collapsible_open, .collapsible:hover {
-  background-color: grey;
-}
-.collapsible:after {
-  content: '\02795';
-  font-size: 13px;
-  color: black;
-  float: right;
-  margin-left: 5px;
-}
-.collapsible_open:after {
-  content: '\2796';
-}
-.collapsible_content {
-  background-color: lightgrey;
-  /*display: block;*/
-  overflow: hidden;
-  width:60%;
-  padding: 0px;
-
-  max-height: 0;
-  transition: max-height 0.2s ease-out;
-}
-/* End collapsible style */
 
 footer {
   font-size: 12px;

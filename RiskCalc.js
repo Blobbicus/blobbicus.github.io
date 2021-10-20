@@ -3,6 +3,7 @@ numOfRisks = 3;
 riskValue = new Array(numOfRisks).fill(0);
 // ID for result boxes
 riskID = ["resultBox_Full", "resultBox_NonInv", "resultBox_SPAHR"];
+riskID2 = ["result_Full", "result_Compera", "result_SPAHR"];
 // Array of all tests
 let tests = [];
 // Create tests with buttons and add to array of tests
@@ -89,21 +90,28 @@ function updateRisk() {
 	for (let i=0; i<numOfRisks; i++) {
 		if (riskValue[i]) {
 			document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2);
+			riskRate = [" (Low risk)", " (Intermediate risk)", " (High risk)"];
+			document.getElementById(riskID2[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[Math.round(riskValue[i])-1];
 		} else {
 			document.getElementById(riskID[i]).innerHTML = "-";
+			document.getElementById(riskID2[i]).innerHTML = "-";
 		}
 		switch (Math.round(riskValue[i])) {
 		case 1:
-			document.getElementById(riskID[i]).style.backgroundColor = "lightgreen";			
+			document.getElementById(riskID[i]).style.backgroundColor = "lightgreen";
+			document.getElementById(riskID2[i]).style.backgroundColor = "lightgreen";			
 		break
 		case 2:
-			document.getElementById(riskID[i]).style.backgroundColor = "yellow";			
+			document.getElementById(riskID[i]).style.backgroundColor = "yellow";
+			document.getElementById(riskID2[i]).style.backgroundColor = "yellow";			
 		break
 		case 3:
-			document.getElementById(riskID[i]).style.backgroundColor = "red";			
+			document.getElementById(riskID[i]).style.backgroundColor = "red";
+			document.getElementById(riskID2[i]).style.backgroundColor = "red";			
 		break
 		default:
 			document.getElementById(riskID[i]).style.backgroundColor = "lightgrey";
+			document.getElementById(riskID2[i]).style.backgroundColor = "white";
 		}
 		
 	}
