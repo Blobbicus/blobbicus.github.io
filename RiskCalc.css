@@ -1,13 +1,3 @@
-body {
-
-}
-
-/*
-.container {
-  max-width: 80%;
-  display: flex;
-  justify-content: center;
-} */
 
 /* table styling start */
 table {
@@ -25,6 +15,7 @@ tr {
 .btn-row > .title-cell {
   vertical-align: middle;
   padding-left: 15px;
+  border-right: 2px solid black;
 }
 .title-cell {
   font-size: 18px;
@@ -32,9 +23,10 @@ tr {
   vertical-align: middle;
   padding-left: 10px;
 }
-.header-cell {
+.header-row > .header-cell {
   vertical-align: middle;
   text-align: center;
+  border: 2px solid black;
 }
 .title-row > th {
   height: 60px;
@@ -42,11 +34,16 @@ tr {
   background-color: #203764;
   color: white;
   text-align: center;
+  border: 2px solid black;
 }
 .result-cell {
   font-weight: bold;
   text-align: center;
   vertical-align: middle;
+}
+.table > .solid-border{
+  border: 2px solid black;
+  border-collapse: collapse;
 }
 /* table styling end */
 
@@ -116,19 +113,13 @@ tr {
 
 /* Style of sidebar with results */
 .resultbar {
-  width: 300px;
   position: fixed;
-  border-radius: 40px;
   float: left;
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: blue;
-  color: white;
   overflow-x: hidden;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin: 40px;
+  margin: 80px;
 }
 .resultRow {
   justify-content: right;
@@ -150,33 +141,46 @@ tr {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.reset_btn {
-  font-size: 18px;
-  color: black;
-  background-color: white;
-  margin-left: 120px;
-  margin-top: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
+.reset-btn {
+  height: 60px;
+  width: 180px;
+  font-size: 22px;
+  color: white;
+  background-color: #203764;
+  margin-top: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reset-btn:hover {
+  background-color: #3e6ca8;
 }
 /* End of sidebar style */
 
-
-footer {
-  font-size: 12px;
-  padding: 20px 0;
+/* Collapsible content */
+.collapsible {
+  color: white;
+  background-color: #203764;
+  cursor: pointer;
+  width: 80%;
+  border: none;
+  text-align: center;
+  font-size: 24px;
 }
-
-footer .col-sm-8 {
-  display: flex;
-  justify-content: flex-end;
+.collapsible_open, .collapsible:hover {
+  background-color: #3e6ca8;
 }
+.collapsible-content {
+  background-color: white;
+  width: 80%;
+  /*display: block;*/
+  overflow: hidden;
+  padding: 0px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 
-footer ul {
-  list-style: none;
+  max-height: 0px;
+  transition: max-height 0.2s ease-out;
 }
-
-footer li img {
-  width: 32px;
-  height: 32px;
-}
+/* End of collapsible */

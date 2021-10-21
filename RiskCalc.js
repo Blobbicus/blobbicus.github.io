@@ -2,8 +2,7 @@
 numOfRisks = 3;
 riskValue = new Array(numOfRisks).fill(0);
 // ID for result boxes
-riskID = ["resultBox_Full", "resultBox_NonInv", "resultBox_SPAHR"];
-riskID2 = ["result_Full", "result_Compera", "result_SPAHR"];
+riskID = ["result_Full", "result_Compera", "result_SPAHR"];
 // Array of all tests
 let tests = [];
 // Create tests with buttons and add to array of tests
@@ -39,7 +38,7 @@ tests.push(VE_slope);
 const proBNP = {name:"proBNP", weight:[1,1,1], value:[1,2,3], title:"", btnText:["< 300","300-1400","> 1400"]};
 tests.push(proBNP);
 //
-const BNP = {name:"BNP", weight:[1,1,0], value:[1,2,3], title:"", btnText:["< 50","50 - 300","> 300"]};
+const BNP = {name:"BNP", weight:[1,1,1], value:[1,2,3], title:"", btnText:["< 50","50 - 300","> 300"]};
 tests.push(BNP);
 //
 const RAarea = {name:"RAarea", weight:[1,0,1], value:[1,2,3], title:"", btnText:["< 18","18 - 26","> 26"]};
@@ -48,13 +47,13 @@ tests.push(RAarea);
 const Pericardial_Effusion = {name:"Pericardial_Effusion", weight:[1,0,1], value:[1,2,3], title:"", btnText:["Nej","Lindrigt","Måttligt/Uttalat"]};
 tests.push(Pericardial_Effusion);
 //
-const MRAP = {name:"MRAP", weight:[1,0,1], value:[1,2,3], title:"", btnText:["< 8","8 - 14","> 14"]};
+const MRAP = {name:"MRAP", weight:[1,1,1], value:[1,2,3], title:"", btnText:["< 8","8 - 14","> 14"]};
 tests.push(MRAP);
 //
-const CI = {name:"CI", weight:[1,0,1], value:[1,2,3], title:"", btnText:["&GreaterEqual; 2.5","2.0 - 2.4","< 2.0"]};
+const CI = {name:"CI", weight:[1,1,1], value:[1,2,3], title:"", btnText:["&GreaterEqual; 2.5","2.0 - 2.4","< 2.0"]};
 tests.push(CI);
 //
-const SvO2 = {name:"SvO2", weight:[1,0,1], value:[1,2,3], title:"", btnText:["> 65","60 - 65","< 60"]};
+const SvO2 = {name:"SvO2", weight:[1,1,1], value:[1,2,3], title:"", btnText:["> 65","60 - 65","< 60"]};
 tests.push(SvO2);
 
 
@@ -69,15 +68,15 @@ function updateRisk() {
 
 	let sum = new Array(numOfRisks).fill(0);
 	let w = new Array(numOfRisks).fill(0);
+	let paramCount = new Array(numOfRisks).fill(0); // Count the number of used params
+	const paramMin = 3; // The minimum number of params for which a value is displayed.
+	
 	// Add up the sum and weights of all tests for each risk
 	for (let i = 0; i < numOfRisks; i++) {
 		for (let j = 0; j < numOfTests; j++) {
 			sum[i] += tests[j].weight[i]*testValue[j];
 			w[i] += (testValue[j]!=0)*tests[j].weight[i];
-			//if (testValue[j] != 0) {
-			//	w[i] += tests[j].weight[i];
-			//}
-		}
+			paramCount[i] += (testValue[j]!=0)*(tests[j].weight[i]!=0);		}
 	}
 	// Calculate the average of all tests
 	for (let i = 0; i < numOfRisks; i++) {
@@ -87,35 +86,30 @@ function updateRisk() {
 		}
 	} 
 
+	// Update and display risk value if min. number of params are used.
 	for (let i=0; i<numOfRisks; i++) {
-		if (riskValue[i]) {
-			document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2);
+		if (riskValue[i] && paramCount[i] >= paramMin ) {
 			riskRate = [" (Low risk)", " (Intermediate risk)", " (High risk)"];
-			document.getElementById(riskID2[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[Math.round(riskValue[i])-1];
-		} else {
-			document.getElementById(riskID[i]).innerHTML = "-";
-			document.getElementById(riskID2[i]).innerHTML = "-";
+			document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[Math.round(riskValue[i])-1];
+			switch (Math.round(riskValue[i])) {
+			case 1: // If riskValue rounds to 1
+				document.getElementById(riskID[i]).style.backgroundColor = "lightgreen";		
+			break
+			case 2: // If riskValue rounds to 2
+				document.getElementById(riskID[i]).style.backgroundColor = "yellow";			
+			break
+			case 3: // If riskValue rounds to 3
+				document.getElementById(riskID[i]).style.backgroundColor = "red";		
+			break
+			default:
+				document.getElementById(riskID[i]).style.backgroundColor = "white";
 		}
-		switch (Math.round(riskValue[i])) {
-		case 1:
-			document.getElementById(riskID[i]).style.backgroundColor = "lightgreen";
-			document.getElementById(riskID2[i]).style.backgroundColor = "lightgreen";			
-		break
-		case 2:
-			document.getElementById(riskID[i]).style.backgroundColor = "yellow";
-			document.getElementById(riskID2[i]).style.backgroundColor = "yellow";			
-		break
-		case 3:
-			document.getElementById(riskID[i]).style.backgroundColor = "red";
-			document.getElementById(riskID2[i]).style.backgroundColor = "red";			
-		break
-		default:
-			document.getElementById(riskID[i]).style.backgroundColor = "lightgrey";
-			document.getElementById(riskID2[i]).style.backgroundColor = "white";
+		} else { // Do if too few parameters were used.
+			document.getElementById(riskID[i]).innerHTML = `Use &geq; ${paramMin} parameters`;
+			document.getElementById(riskID[i]).style.backgroundColor = "white";
 		}
 		
 	}
-	//console.log(`Risk updated, full risk = ${riskValue[0]}`);
 }
 
 function inputButton(name, val) {
@@ -131,16 +125,11 @@ function inputButton(name, val) {
 				testValue[i] = val;
 				//console.log(`Updated test ${name} value to ${testValue[i]}!`)
 			}
-			
-			
 		}
 	}
 	updateRisk();
 }
 
-function inputField() {
-
-}
 
 function collapseContent(btn) {
 	btn.classList.toggle("collapsible_open");
@@ -153,13 +142,13 @@ function collapseContent(btn) {
 		content.style.display = "none";
 	}
 	*/
-	//console.log(content.style.maxHeight);
+	console.log(content.style.maxHeight);
 	if (content.style.maxHeight) {
 		content.style.maxHeight = null;
-		//console.log("Closed collapsible!");
+		console.log("Closed collapsible!");
 	} else {
 		content.style.maxHeight = content.scrollHeight + "px";
-		//console.log(`Opened collapsible! ${content.scrollHeight}`);
+		console.log(`Opened collapsible! ${content.scrollHeight}`);
 	}
 }
 
@@ -174,4 +163,12 @@ function resetCalc() {
 		testValue[i] = 0;
 	}
 	updateRisk();
+}
+
+function copyData() {
+	let copyStr = `Risk score: ${riskValue[0]}`;
+	for( let i = 0; i<numOfTests; i++ ) {
+		copyStr += `\n${tests[i].name}: ${testValue[i]}`;
+	}
+	navigator.clipboard.writeText(copyStr);
 }
