@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>PAH Risk Calculator</title>
+	<meta charset='UTF-8'/>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="RiskCalc.css">
+ 	<script type="text/javascript" src="RiskCalc.js"></script>
+</head>
+
+<body>
+
+<header class="container">
+	<div class="row">
+		<nav class="col-xs-8 text-right">
+		</nav>
+	</div>
+</header>
+
+<section class="resultbar">
+	<button class="reset-btn" onclick="printTable()">Print</button>
+
+	<button class="reset-btn" onclick="copyData()">Copy</button>
+
+	<button class="reset-btn" onclick="resetCalc()">Reset</button>
+
+	<button class="reset-btn" onclick="createButton()">Add Btn</button>
+</section>
+
+
+<section class="container">
+
+	<table class="table table-bordered" style="width:80%;border:2px solid black;">
+	
+	<!--
+	<tr>
+		<th></th>
+		<th style="width:150px"></th>
+		<th style="width:150px"></th>
+		<th style="width:150px"></th>
+	</tr>
+	-->
+	<tbody class="solid-border">
+	<tr class="title-row">
+		<th colspan="4">
+		Pulmonary Arterial Hypertension Risk Score Calculator<br>
+		Select the available risk category for each parameter
+		</th>
+	</tr>
+	</tbody>
+
+	<tbody class="solid-border">
+	<tr class="header-row">
+		<th class="header-cell" rowspan="2">
+			Determinants of prognosis
+		</th>
+		<th class="header-cell" colspan="3">
+			Risk Group Corresponding to 1-year Mortality
+		</th>
+	</tr>
+
+	<tr class="header-row">
+		<th class="header-cell" style="width:180px;background-color: lightgreen;">Low risk (<5%)</th>
+		<th class="header-cell" style="width:180px;background-color: yellow;">Intermediate risk (5-10%)</th>
+		<th class="header-cell" style="width:180px;background-color: red;">High risk (>10%)</th>
+	</tr>
+	</tbody>
+
+	<!-- Start of rows of parameters -->
+	<!-- Section 1 start -->
+	<tbody class="solid-border">
+	<tr class="btn-row">
+		<td class="title-cell">
+		Clinical signs of right heart failure
+		</td>
+		
+		<td class="btn-cell">
+		<label id="RV_Fail_1" class="radioButton">
+		<input type="radio" name="RV_Fail" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Absent</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="RV_Fail_2" class="radioButton">
+		<span class="checkmark">-</span>	
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="RV_Fail_3" class="radioButton">
+		<input type="radio" name="RV_Fail" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Present</span>
+		</label>
+		</td>
+	</tr>
+
+	<tr class="btn-row">
+		<td class="title-cell">
+		Progression of symptoms
+		</td>
+
+		<td class="btn-cell">
+		<label id="Sympt_Prog_1" class="radioButton">
+		<input type="radio" name="Sympt_Prog" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">No</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Sympt_Prog_2" class="radioButton">
+		<input type="radio" name="Sympt_Prog" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Slow</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Sympt_Prog_3" class="radioButton">
+		<input type="radio" name="Sympt_Prog" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Rapid</span>
+		</label>
+		</td>
+	</tr>
+
+	<tr class="btn-row">
+		<td class="title-cell">
+		Syncope
+		</td>
+
+		<td class="btn-cell">
+		<label id="Syncope_1" class="radioButton">
+		<input type="radio" name="Syncope" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">No</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Syncope_2" class="radioButton">
+		<input type="radio" name="Syncope" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Occasionally</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Syncope_3" class="radioButton">
+		<input type="radio" name="Syncope" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Repeated syncope</span>
+		</label>
+		</td>
+	</tr>
+	</tbody>
+	<!-- Secition 1 end -->
+
+	<!-- Section 2 start -->
+	<tbody class="solid-border">
+	<tr class="btn-row">
+		<td class="title-cell">
+		WHO functional class <sup>¤</sup>
+		</td>
+
+		<td class="btn-cell">
+		<label id="WHO_FC_1" class="radioButton">
+		<input type="radio" name="WHO_FC" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">I or II</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="WHO_FC_2" class="radioButton">
+		<input type="radio" name="WHO_FC" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">III</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="WHO_FC_3" class="radioButton">
+		<input type="radio" name="WHO_FC" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">IV</span>
+		</label>
+		</td>
+	</tr>
+
+	<tr class="btn-row">
+		<td class="title-cell">
+		Six-minute walking distance <sup>¤</sup>
+		</td>
+
+		<td class="btn-cell">
+		<label id="MWT_1" class="radioButton">
+		<input type="radio" name="MWT" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">> 440 m</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="MWT_2" class="radioButton">
+		<input type="radio" name="MWT" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">165 - 440 m</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="MWT_3" class="radioButton">
+		<input type="radio" name="MWT" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">< 165 m</span>
+		</label>
+		</td>
+	</tr>
+	</tbody>
+	<!-- Section 2 end -->
+
+	<!-- Section 3 start -->
+	<tbody class="solid-border">
+	<tr class="btn-row">
+		<td class="title-cell" rowspan="3">
+			Cardiopulmonary excersice testing
+		</td>
+
+		<td class="btn-cell">
+		<label id="Peak_VO2_1" class="radioButton">
+		<input type="radio" name="Peak_VO2" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Peak VO<sub>2</sub>  > 15 ml/min/kg</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Peak_VO2_2" class="radioButton">
+		<input type="radio" name="Peak_VO2" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Peak VO<sub>2</sub>  11-15 ml/min/kg</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Peak_VO2_3" class="radioButton">
+		<input type="radio" name="Peak_VO2" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Peak VO<sub>2</sub>  < 11 ml/min/kg</span>
+		</label>
+		</td>
+	</tr>
+
+	<tr class="btn-row">
+		
+		<!--<td class="title-cell">
+		Predicted_VO2
+		</td>-->
+
+		<td class="btn-cell">
+		<label id="Predicted_VO2_1" class="radioButton">
+		<input type="radio" name="Predicted_VO2" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">> 65 % predicted</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Predicted_VO2_2" class="radioButton">
+		<input type="radio" name="Predicted_VO2" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark"> 35 - 65 % predicted</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Predicted_VO2_3" class="radioButton">
+		<input type="radio" name="Predicted_VO2" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">< 35 % predicted</span>
+		</label>
+		</td>
+	</tr>
+
+	<tr class="btn-row">
+		<!--<td class="title-cell">
+		VE_slope
+		</td>-->
+
+		<td class="btn-cell">
+		<label id="VE_slope_1" class="radioButton">
+		<input type="radio" name="VE_slope" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">VE/VO<sub>2</sub>-slope < 36</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="VE_slope_2" class="radioButton">
+		<input type="radio" name="VE_slope" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">VE/VO<sub>2</sub>-slope 36-44.9</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="VE_slope_3" class="radioButton">
+		<input type="radio" name="VE_slope" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">VE/VO<sub>2</sub>-slope &GreaterEqual; 45</span>
+		</label>
+		</td>
+	</tr>
+	</tbody>
+	<!-- Section 3 end -->
+
+	<!-- Section BNP start -->
+	<tbody class="solid-border">
+	<tr class="btn-row">
+		<td class="title-cell" rowspan="2" style="vertical-align: middle;">
+		Biochemical markers <sup>¤*</sup>
+		</td>
+
+		<td class="btn-cell">
+		<label id="proBNP_1" class="radioButton">
+		<input type="radio" name="proBNP" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">NT-proBNP < 300 ng/l</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="proBNP_2" class="radioButton">
+		<input type="radio" name="proBNP" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">NT-proBNP 300 - 1400 ng/l</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="proBNP_3" class="radioButton">
+		<input type="radio" name="proBNP" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">NT-proBNP > 1400 ng/l</span>
+		</label>
+		</td>
+	</tr>
+
+	<tr class="btn-row">
+
+		<td class="btn-cell">
+		<label id="BNP_1" class="radioButton">
+		<input type="radio" name="BNP" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">BNP < 50 ng/l</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="BNP_2" class="radioButton">
+		<input type="radio" name="BNP" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">BNP 50 - 300 ng/l</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="BNP_3" class="radioButton">
+		<input type="radio" name="BNP" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">BNP > 300 ng/l</span>
+		</label>
+		</td>
+	</tr>
+	</tbody>
+	<!-- Section BNP end -->
+
+	<!-- Section Imaging start -->
+	<tbody class="solid-border">
+	<tr class="btn-row">
+		<td class="title-cell" rowspan="2">
+		Imaging <sup>¤</sup> <small>(echocardiography, cardiac magnetic resonance)</small>
+		</td>
+
+		<td class="btn-cell">
+		<label id="RAarea_1" class="radioButton">
+		<input type="radio" name="RAarea" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">RA area < 18 cm<sup>2</sup></span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="RAarea_2" class="radioButton">
+		<input type="radio" name="RAarea" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">RA area 18 - 26 cm<sup>2</sup></span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="RAarea_3" class="radioButton">
+		<input type="radio" name="RAarea" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">RA area > 26 cm<sup>2</sup></span>
+		</label>
+		</td>
+	</tr>
+
+	<tr class="btn-row">
+		<!--<td class="title-cell">
+		Pericardial_Effusion
+		</td>-->
+
+		<td class="btn-cell">
+		<label id="Pericardial_Effusion_1" class="radioButton">
+		<input type="radio" name="Pericardial_Effusion" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">No pericardial effusion</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Pericardial_Effusion_2" class="radioButton">
+		<input type="radio" name="Pericardial_Effusion" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Minimal pericardial effusion</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="Pericardial_Effusion_3" class="radioButton">
+		<input type="radio" name="Pericardial_Effusion" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Pericardial effusion</span>
+		</label>
+		</td>
+	</tr>
+	</tbody>
+	<!-- Section Imaging end -->
+
+	<!-- Section Haemodynamics start -->
+	<tbody class="solid-border">
+	<tr class="btn-row">
+		<td class="title-cell" rowspan="3">
+		Haemodynamics <sup>¤</sup>
+		</td>
+
+		<td class="btn-cell">
+		<label id="MRAP_1" class="radioButton">
+		<input type="radio" name="MRAP" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">RAP &leq; 8 mmHg</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="MRAP_2" class="radioButton">
+		<input type="radio" name="MRAP" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">RAP 8 - 14 mmHg</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="MRAP_3" class="radioButton">
+		<input type="radio" name="MRAP" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">RAP > 14 mmHg</span>
+		</label>
+		</td>
+	</tr>
+
+	<tr class="btn-row">
+		<!--<td class="title-cell">
+		CI
+		</td>-->
+
+		<td class="btn-cell">
+		<label id="CI_1" class="radioButton">
+		<input type="radio" name="CI" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">CI &GreaterEqual; 2.5 l/min/m<sup>2</sup></span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="CI_2" class="radioButton">
+		<input type="radio" name="CI" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">CI 2.0 - 2.4 l/min/m<sup>2</sup></span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="CI_3" class="radioButton">
+		<input type="radio" name="CI" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">CI < 2.0 l/min/m<sup>2</sup></span>
+		</label>
+		</td>
+	</tr>
+
+	<tr class="btn-row">
+		<!--<td class="title-cell">
+		SvO2
+		</td>-->
+
+		<td class="btn-cell">
+		<label id="SvO2_1" class="radioButton">
+		<input type="radio" name="SvO2" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">SvO<sub>2</sub> > 65 %</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="SvO2_2" class="radioButton">
+		<input type="radio" name="SvO2" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">SvO<sub>2</sub> 60 - 65 %</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="SvO2_3" class="radioButton">
+		<input type="radio" name="SvO2" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">SvO<sub>2</sub> < 60 %</span>
+		</label>
+		</td>
+	</tr>
+	</tbody>
+
+	<!-- Section Haemodynamics end -->
+	<!-- End of rows of parameters -->
+
+	<!-- Start of result section -->
+	<tr class="title-row">
+		<th colspan="4">
+			Calculated Risk Scores <small>[1-6]</small>
+		</th>
+	</tr>
+
+	<tr class="header-row">
+		<th class="header-cell">Risk Assesment Strategy</th>
+		<th class="header-cell">Risk Score</th>
+		<th class="header-cell" colspan="2">Key for Interpretation</th>
+	</tr>
+
+	<tr class="title-row">
+		<th colspan="2">
+		SPAHR-equation derived risk scores
+		<td colspan="2">Picture stuff...</td>
+	</tr>
+
+	<tr>
+		<td>Extended<small>(using all available parameters above in SPAHR equation)</small></td>
+		<td class="result-cell" id="result_Full">Use &geq; 3 parameters</td>
+		<td colspan="2">Picture stuff...</td>
+	</tr>
+
+	<tr>
+		<td>SPAHR-Kylhammar<small>(up to 8 determinats of prognosis)</small></td>
+		<td class="result-cell" id="result_SPAHR">Use &geq; 3 parameters</td>
+		<td colspan="2">Picture stuff...</td>
+	</tr>
+
+	<tr>
+		<td>COMPERA<small>(up to 6 parameters, without RA and pericardial effusion)</small></td>
+		<td class="result-cell" id="result_Compera">Use &geq; 3 parameters</td>
+		<td colspan="2">Picture stuff...</td>
+	</tr>
+
+	<tr>
+		<td>Weighted non-invasive<small>(WHO FC, 6MWD and BNP/NT-proBNP)</small></td>
+		<td class="result-cell" id="result_Weighted">N/A, Coming Soon</td>
+		<td colspan="2">Picture stuff...</td>
+	</tr>
+
+	<tr class="title-row">
+		<th colspan="2">
+		French strategy - number of low-risk parameters
+		</th>
+		<td colspan="2">Picture stuff...</td>
+	</tr>
+
+	<tr>
+		<td>French invasive<small>(WHO-FC, 6MWD, RAP, CI)</small></td>
+		<td class="result-cell" id="result_French1">1.0</td>
+		<td colspan="2">Picture stuff...</td>
+	</tr>
+
+	<tr>
+		<td>French non-invasive<small>(WHO-FC, 6MWD, BNP/NT-proBNP)</small></td>
+		<td class="result-cell" id="result_French2">1.0</td>
+		<td colspan="2">Picture stuff...</td>
+	</tr>
+	
+	</table>
+
+	<!-- Collapsible enviroment with extra information -->
+	<button class="collapsible" onclick="collapseContent(this)">Additional information</button>
+	<div class="collapsible-content">
+	<ul>
+		<li>
+			The risk calculator variables and cut-offs are based on expert opinion according to the 2015 ESC/ERS pulmonary hypertension guidelines <small>[1]</small> which have been validated <small>[2-6]</small>. The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intended to be used as or replacing clinical or medical assessment, diagnosis, or treatment.
+		</li>
+		<li>
+			 The user take full responsibility, including but not limited to decision making, for all data input and calculated scores.
+		</li>
+		<li>
+			The developers are not liable for any errors or inaccuracies in the algorithms or other content within or related to the calculation tool. 
+		</li>
+		<li>
+			The final decision making has to be made on balanced clinical judgement by the user in relation to the full clinical presentation. The risk calculator serves only as a supporting tool to calculate risk scores.
+		</li>
+		<li>
+			The risk score calculator is continusly updated according to available data and is to be updated after the upcoming ESC/ERS guidelines in 2022.
+		</li>		
+	</ul>
+	</div>
+
+	<!-- Collapsible enviroment with article references -->
+	<button class="collapsible" onclick="collapseContent(this)">References</button>
+	<div class="collapsible-content">
+	<ol>
+		<li>Authors 1, Reference 1 ...</li>
+		<li>Authors 2, Reference 2 ...</li>
+		<li>Authors 3, Reference 3 ...</li>
+	</ol>
+	</div>
+
+	<!-- Start of collapisble enviroment 
+	<button class="collapsible" onclick="collapseContent(this)">Collapse</button>
+	<div class="collapsible_content">
+	<div class="buttonSet">
+		<h3 class="col-xs-6">NAME</h3>
+	<div class="buttonRow">
+		<label id="PH_NAME_1" class="radioButton col-xs-2">
+		<input type="radio" name="PH_NAME" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Button 1</span>
+		</label>
+		<label id="PH_NAME_2" class="radioButton col-xs-2">
+		<input type="radio" name="PH_NAME" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Button 2</span>
+		</label>
+		<label id="PH_NAME_3" class="radioButton col-xs-2">
+		<input type="radio" name="PH_NAME" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Button 3</span>
+		</label>
+	</div>
+	</div>
+	</div>
+	End of collapsible enviroment -->
+
+<!-- 	
+	<div class="buttonSet">
+		<h3 class="col-xs-6">Place holder NAME</h3>
+	<div class="buttonRow">
+		<label id="PH_NAME_1" class="radioButton col-xs-2">
+		<input type="radio" name="PH_NAME" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Button 1</span>
+		</label>
+		<label id="PH_NAME_2" class="radioButton col-xs-2">
+		<input type="radio" name="PH_NAME" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Button 2</span>
+		</label>
+		<label id="PH_NAME_3" class="radioButton col-xs-2">
+		<input type="radio" name="PH_NAME" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">Button 3</span>
+		</label>
+	</div>
+	</div> -->
+
+<!--
+	<tr class="btn-row">
+		<td class="title-cell">
+		PH NAME
+		</td>
+
+		<td class="btn-cell">
+		<label id="PH_NAME_1" class="radioButton">
+		<input type="radio" name="RV_Fail" value="1" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">-</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="PH_NAME_2" class="radioButton">
+		<input type="radio" name="PH_NAME" value="2" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">--</span>
+		</label>
+		</td>
+
+		<td class="btn-cell">
+		<label id="PH_NAME_3" class="radioButton">
+		<input type="radio" name="PH_NAME" value="3" onclick="inputButton(this.name, this.value)">
+		<span class="checkmark">---</span>
+		</label>
+		</td>
+	</tr>
+-->
+
+
+</section>
+
+
+</body>

@@ -13,7 +13,7 @@ table {
   border-spacing: 0px;
 }
 tr {
-  height: 30px;
+  height: 40px;
 }
 .table > tbody > tr > th,
 .table > tbody > tr > td {
@@ -25,13 +25,11 @@ tr {
   border-right: 2px solid black;
 }
 .title-cell {
-  font-size: 14px;
+  font-size: 16px;
   display: table-cell;
   vertical-align: middle;
+  text-align: center;
   padding-left: 10px;
-}
-.image-cell {
-
 }
 .header-row > .header-cell {
   vertical-align: middle;
@@ -40,7 +38,7 @@ tr {
 }
 .title-row > th {
   height: 60px;
-  font-size: 18px;
+  font-size: 20px;
   background-color: var(--background-blue);
   color: white;
   text-align: center;
@@ -80,7 +78,7 @@ tr {
   height: 100%;
   min-height: 100%;
   width: 100%;
-  font-size: 12px;
+  font-size: 10px;
   padding: 0px;
   margin: 0px;
   background-color: white;
@@ -89,18 +87,15 @@ tr {
   justify-content: center;
   align-items: center;
 }
-.radioButton:hover input[value="1"] ~ .checkmark {
-  /*background-color: var(--low-green);*/
-  border: 3px solid var(--low-green);
+/*.radioButton:hover input[value="1"] ~ .checkmark {
+  background-color: var(--low-green);
 }
 .radioButton:hover input[value="2"] ~ .checkmark {
-  /*background-color: var(--mid-yellow);*/
-  border: 3px solid var(--mid-yellow);
+  background-color: var(--mid-yellow);
 }
 .radioButton:hover input[value="3"] ~ .checkmark {
-  /*background-color: var(--high-red);*/
-  border: 3px solid var(--high-red);
-}
+  background-color: var(--high-red);
+}*/
 .btn-cell input[value="1"]:checked ~ .checkmark {
   background-color: var(--low-green);
   font-weight: bold;
@@ -113,10 +108,9 @@ tr {
   background-color: var(--high-red);
   font-weight: bold;
 }
-.radioButton:hover input:checked ~ .checkmark {
-  /*background-color: white;*/
-  border: 3px solid white;
-}
+/*.radioButton:hover input:checked ~ .checkmark {
+  background-color: white;
+}*/
 .checkmark:after {
   content: "";
   position: absolute;
@@ -128,28 +122,32 @@ tr {
 /* Style of sidebar with results */
 .resultbar {
   position: fixed;
-  float: left;
+  width: 100%;
   z-index: 1;
   top: 0;
-  right: 0;
   overflow-x: hidden;
-  margin: 80px;
+  margin-bottom: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: white;
 }
 .reset-btn {
-  height: 60px;
-  width: 180px;
-  font-size: 22px;
+  height: 40px;
+  width: 30%;
+  font-size: 18px;
   color: white;
   background-color: var(--background-blue);
-  margin-top: 5px;
+  margin: 5px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.reset-btn:hover {
+/*.reset-btn:hover {
   background-color: var(--highlight-blue);
-}
+}*/
 /* End of sidebar style */
 
 /* Collapsible content */
@@ -157,12 +155,12 @@ tr {
   color: white;
   background-color: var(--background-blue);
   cursor: pointer;
-  width: 80%;
+  width: 96%;
   border: none;
   text-align: center;
   font-size: 24px;
 }
-.collapsible_open, .collapsible:hover {
+.collapsible_open {
   background-color: var(--highlight-blue);
 }
 .collapsible-content {
@@ -178,9 +176,3 @@ tr {
   transition: max-height 0.2s ease-out;
 }
 /* End of collapsible */
-
-.image-svg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

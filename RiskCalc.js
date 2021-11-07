@@ -1,67 +1,80 @@
 // Number of risk calculations
-numOfRisks = 3;
-riskValue = new Array(numOfRisks).fill(0);
+var numOfRisks = 3;
+let riskValue = new Array(numOfRisks).fill(0);
 // ID for result boxes
-riskID = ["result_Full", "result_Compera", "result_SPAHR"];
-// Array of all tests
-let tests = [];
-// Create tests with buttons and add to array of tests
+var riskID = ["result_Full", "result_Compera", "result_SPAHR"];
+// Array of all parameters
+let params = [];
+// Create params with buttons and add to array of params
 /*
 const PH_NAME = {name:"PH_NAME", weight:[0,0,0], value:[1,2,3], title:"", btnText:["BTN1","BTN2","BTN3"]};
-tests.push(PH_NAME);
+params.push(PH_NAME);
 */
 //RV Failure
-const RV_Fail = {name:"RV_Fail", weight:[1,0,0], value:[1,3], title:"", btnText:["Nej","Ja"]};
-tests.push(RV_Fail);
+const RV_Fail = {name:"RV_Fail", group:"Sympt", weight:[1,0,0], value:[1,0,3], title:"Clinical signs of right heart failure", btnText:["Absent","-","Present"]};
+params.push(RV_Fail);
 // Progression of Symptoms
-const Sympt_Prog = {name:"Sympt_Prog", weight:[1,0,0], value:[1,2,3], title:"", btnText:["Nej","Långsam","Snabb"]};
-tests.push(Sympt_Prog);
+const Sympt_Prog = {name:"Sympt_Prog", group:"Sympt", weight:[1,0,0], value:[1,2,3], title:"Progression of symptoms", btnText:["No","Slow","Rapid"]};
+params.push(Sympt_Prog);
 // Syncope
-const Syncope = {name:"Syncope", weight:[1,0,0], value:[1,2,3], title:"", btnText:["Nej","Enstaka","Upprepade"]};
-tests.push(Syncope);
+const Syncope = {name:"Syncope", group:"Sympt", weight:[1,0,0], value:[1,2,3], title:"Syncope", btnText:["No","Occasionally","Repeated syncope"]};
+params.push(Syncope);
 // WHO-FC
-const WHO_FC = {name:"WHO_FC", weight:[1,1,1], value:[1,2,3], title:"", btnText:["I, II","III","IV"]};
-tests.push(WHO_FC);
+const WHO_FC = {name:"WHO_FC", group:"WHO_walk", weight:[1,1,1], value:[1,2,3], title:"WHO functional class <sup>¤</sup>", btnText:["I, II","III","IV"]};
+params.push(WHO_FC);
 // 6MWT
-const MWT = {name:"MWT", weight:[1,1,1], value:[1,2,3], title:"", btnText:["> 440","165 - 440","< 165"]};
-tests.push(MWT);
+const MWT = {name:"MWT", group:"WHO_walk", weight:[1,1,1], value:[1,2,3], title:"Six-minute walking distance <sup>¤</sup>", btnText:["> 440 m","165 - 440 m","< 165 m"]};
+params.push(MWT);
 // Peak VO_2
-const Peak_VO2 = {name:"Peak_VO2", weight:[1,0,0], value:[1,2,3], title:"", btnText:["> 15","11 - 15","< 11"]};
-tests.push(Peak_VO2);
+const Peak_VO2 = {name:"Peak_VO2", group:"Cardiopulmonary", weight:[1,0,0], value:[1,2,3], title:"Peak VO2", btnText:["Peak VO<sub>2</sub> > 15 ml/min/kg","Peak VO<sub>2</sub> 11 - 15 ml/min/kg","Peak VO<sub>2</sub> < 11 ml/min/kg"]};
+params.push(Peak_VO2);
 //
-const Predicted_VO2 = {name:"Predicted_VO2", weight:[1,0,0], value:[1,2,3], title:"", btnText:["> 65","35 - 65","< 35"]};
-tests.push(Predicted_VO2);
+const Predicted_VO2 = {name:"Predicted_VO2", group:"Cardiopulmonary", weight:[1,0,0], value:[1,2,3], title:"Predicted VO2", btnText:["> 65% of predicted","35 - 65% of predicted","< 35% of predicted"]};
+params.push(Predicted_VO2);
 // VE / VO_2 slope
-const VE_slope = {name:"VE_slope", weight:[1,0,0], value:[1,2,3], title:"", btnText:["< 36","36 - 44.9","&GreaterEqual; 45"]};
-tests.push(VE_slope);
+const VE_slope = {name:"VE_slope", group:"Cardiopulmonary", weight:[1,0,0], value:[1,2,3], title:"VE/VO2-slope", btnText:["VE/VO<sub>2</sub>-slope < 36","VE/VO<sub>2</sub>-slope 36 - 44.9","VE/VO<sub>2</sub>-slope &GreaterEqual; 45"]};
+params.push(VE_slope);
 //
-const proBNP = {name:"proBNP", weight:[1,1,1], value:[1,2,3], title:"", btnText:["< 300","300-1400","> 1400"]};
-tests.push(proBNP);
+const proBNP = {name:"proBNP", group:"Biochem", weight:[1,1,1], value:[1,2,3], title:"NT-proBNP", btnText:["NT-proBNP < 300 ng/l","NT-proBNP 300 - 1400 ng/l","NT-proBNP > 1400 ng/l"]};
+params.push(proBNP);
 //
-const BNP = {name:"BNP", weight:[1,1,1], value:[1,2,3], title:"", btnText:["< 50","50 - 300","> 300"]};
-tests.push(BNP);
+const BNP = {name:"BNP", group:"Biochem", weight:[1,1,1], value:[1,2,3], title:"BNP", btnText:["BNP < 50 ng/l","BNP 50 - 300 ng/l","BNP > 300 ng/l"]};
+params.push(BNP);
 //
-const RAarea = {name:"RAarea", weight:[1,0,1], value:[1,2,3], title:"", btnText:["< 18","18 - 26","> 26"]};
-tests.push(RAarea);
+const RAarea = {name:"RAarea", group:"Imaging", weight:[1,0,1], value:[1,2,3], title:"RA area", btnText:["RA area < 18 cm<sup>2</sup>","RA area 18 - 26 cm<sup>2</sup>","RA area > 26 cm<sup>2</sup>"]};
+params.push(RAarea);
 //
-const Pericardial_Effusion = {name:"Pericardial_Effusion", weight:[1,0,1], value:[1,2,3], title:"", btnText:["Nej","Lindrigt","Måttligt/Uttalat"]};
-tests.push(Pericardial_Effusion);
+const Pericardial_Effusion = {name:"Pericardial_Effusion", group:"Imaging", weight:[1,0,1], value:[1,2,3], title:"Pericardial effusion", btnText:["No pericardial effusion","Minimal pericardial effusion","Pericardial effusion"]};
+params.push(Pericardial_Effusion);
 //
-const MRAP = {name:"MRAP", weight:[1,1,1], value:[1,2,3], title:"", btnText:["< 8","8 - 14","> 14"]};
-tests.push(MRAP);
+const MRAP = {name:"MRAP", group:"Haemodynamics", weight:[1,1,1], value:[1,2,3], title:"MRAP", btnText:["RAP &leq; 8 mmHg","RAP 8 - 14 mmHg","RAP > 14 mmHg"]};
+params.push(MRAP);
 //
-const CI = {name:"CI", weight:[1,1,1], value:[1,2,3], title:"", btnText:["&GreaterEqual; 2.5","2.0 - 2.4","< 2.0"]};
-tests.push(CI);
+const CI = {name:"CI", group:"Haemodynamics", weight:[1,1,1], value:[1,2,3], title:"CI", btnText:["CI &GreaterEqual; 2.5 l/min/m<sup>2</sup>","CI 2.0 - 2.4 l/min/m<sup>2</sup>","CI < 2.0 l/min/m<sup>2</sup>"]};
+params.push(CI);
 //
-const SvO2 = {name:"SvO2", weight:[1,1,1], value:[1,2,3], title:"", btnText:["> 65","60 - 65","< 60"]};
-tests.push(SvO2);
+const SvO2 = {name:"SvO2", group:"Haemodynamics", weight:[1,1,1], value:[1,2,3], title:"SvO2", btnText:["SvO<sub>2</sub> > 65%","SvO<sub>2</sub> 60% - 65%","SvO<sub>2</sub> < 60%"]};
+params.push(SvO2);
+// Set group titles
+const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise training", Biochem:"Biochemical markers <sup>¤*</sup>", 
+			Imaging:"Imaging <sup>¤</sup> <small>(echocardiography, cardiac magnetic resonance)</small>", Haemodynamics:"Haemodynamics <sup>¤</sup>"};
 
+// Color scheme
+const value_low = 1;
+const value_mid = 2;
+const value_high = 3;
+const color_low = [ ];
+const color_mid = [];
+const color_high = [];
 
-// Number of tests in array
-numOfTests = tests.length;
+// Number of params in array
+const numOfParams = params.length;
 
 // Create array with test values
-let testValue = new Array(numOfTests).fill(0);
+let testValue = new Array(numOfParams).fill(0);
+
+
+
 
 // Update all risks
 function updateRisk() {
@@ -71,20 +84,41 @@ function updateRisk() {
 	let paramCount = new Array(numOfRisks).fill(0); // Count the number of used params
 	const paramMin = 3; // The minimum number of params for which a value is displayed.
 	
-	// Add up the sum and weights of all tests for each risk
+	// Add up the sum and weights of all params for each risk
 	for (let i = 0; i < numOfRisks; i++) {
-		for (let j = 0; j < numOfTests; j++) {
-			sum[i] += tests[j].weight[i]*testValue[j];
-			w[i] += (testValue[j]!=0)*tests[j].weight[i];
-			paramCount[i] += (testValue[j]!=0)*(tests[j].weight[i]!=0);		}
+		for (let j = 0; j < numOfParams; j++) {
+			sum[i] += params[j].weight[i]*testValue[j];
+			w[i] += (testValue[j]!=0)*params[j].weight[i];
+			paramCount[i] += (testValue[j]!=0)*(params[j].weight[i]!=0);		}
 	}
-	// Calculate the average of all tests
+	
+	// Special code for BNP/proBNP hierarchy
+	let BNP_index;
+	let proBNP_index;
+	for (let j = 0; j < numOfParams; j++) {
+		if (params[j].name === "BNP") {
+			BNP_index = j;
+		} else if (params[j].name === "proBNP") {
+			proBNP_index = j;
+		}
+	}
+	if ( testValue[BNP_index] > 0 && testValue[proBNP_index] > 0 ) {
+		for(let i = 0; i < numOfRisks; i++) {
+			sum[i] -= testValue[BNP_index]*params[BNP_index].weight[i];
+			w[i] -= params[BNP_index].weight[i];
+			paramCount[i] -= (params[BNP_index].weight[i]!=0)
+		}
+	}
+
+	// Calculate the average of all params
 	for (let i = 0; i < numOfRisks; i++) {
 		riskValue[i] = 0;
 		if (w[i] !== 0) {
 			riskValue[i] = sum[i]/w[i];
 		}
-	} 
+	}
+
+
 
 	// Update and display risk value if min. number of params are used.
 	for (let i=0; i<numOfRisks; i++) {
@@ -93,13 +127,13 @@ function updateRisk() {
 			document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[Math.round(riskValue[i])-1];
 			switch (Math.round(riskValue[i])) {
 			case 1: // If riskValue rounds to 1
-				document.getElementById(riskID[i]).style.backgroundColor = "lightgreen";		
+				document.getElementById(riskID[i]).style.backgroundColor = "var(--low-green)";		
 			break
 			case 2: // If riskValue rounds to 2
-				document.getElementById(riskID[i]).style.backgroundColor = "yellow";			
+				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-yellow)";			
 			break
 			case 3: // If riskValue rounds to 3
-				document.getElementById(riskID[i]).style.backgroundColor = "red";		
+				document.getElementById(riskID[i]).style.backgroundColor = "var(--high-red)";		
 			break
 			default:
 				document.getElementById(riskID[i]).style.backgroundColor = "white";
@@ -114,8 +148,8 @@ function updateRisk() {
 
 function inputButton(name, val) {
 	//updateButton(id, testNum, btnNum);
-	for (let i=0; i < numOfTests; i++) {
-		if (name === tests[i].name) {
+	for (let i=0; i < numOfParams; i++) {
+		if (name === params[i].name) {
 			if (testValue[i] == val) {
 				var radio = document.querySelector(`input[type=radio][name=${name}]:checked`);
 				radio.checked = false;
@@ -154,8 +188,8 @@ function collapseContent(btn) {
 
 function resetCalc() {
 	
-	for(let i = 0; i < numOfTests; i++) {
-		var name = tests[i].name;
+	for(let i = 0; i < numOfParams; i++) {
+		var name = params[i].name;
 		var radio;
 		if( radio = document.querySelector(`input[type=radio][name=${name}]:checked`) ) {
 			radio.checked = false;
@@ -167,8 +201,151 @@ function resetCalc() {
 
 function copyData() {
 	let copyStr = `Risk score: ${riskValue[0]}`;
-	for( let i = 0; i<numOfTests; i++ ) {
-		copyStr += `\n${tests[i].name}: ${testValue[i]}`;
+	for( let i = 0; i<numOfParams; i++ ) {
+		copyStr += `\n${params[i].name}: ${testValue[i]}`;
 	}
 	navigator.clipboard.writeText(copyStr);
+}
+
+function createButton(name, value, btn_text) {
+	// Creates cell for button
+	var cell = document.createElement("TD")
+	cell.setAttribute("class","btn-cell")
+	// Create label with type radioButton
+	var label = document.createElement("LABEL");
+	label.setAttribute("class","radioButton");
+	// Create radio button with name and val
+	if (value) {
+		var btn = document.createElement("INPUT");
+		btn.setAttribute("type","radio");
+		btn.setAttribute("name",name);
+		btn.setAttribute("value",value);
+		btn.setAttribute("onclick","inputButton(this.name, this.value)");
+		label.appendChild(btn);
+	}
+	// Create span with type checkmark
+	var span = document.createElement("SPAN");
+	span.setAttribute("class","checkmark");
+	span.innerHTML = btn_text;
+	label.appendChild(span);
+	// Add btn and span to label node
+	cell.appendChild(label);
+	
+	return cell;
+}
+
+function createTitleCell( title, span = 1 ) {
+	var title_cell = document.createElement("TD");
+	title_cell.setAttribute("class","title-cell");
+	title_cell.innerHTML = title;
+	if ( span > 1 ) {
+		title_cell.setAttribute("rowspan",span);
+	}
+	
+	return title_cell;
+}
+function createTable() {
+	let groups = ["misc"];
+	let groupCount = {misc:0};
+	var group_id;
+	const max_btns = 3;
+	for(let i=0; i < numOfParams; i++) {
+		if (group_id = params[i].group) {	
+			if ( groupCount[group_id] ) {
+				groupCount[group_id] += 1;
+			} else {
+				var body = document.createElement("TBODY");
+				body.setAttribute("class","solid-border");
+				body.setAttribute("id",group_id);
+				misc_body = document.getElementById("misc");
+				document.getElementById("mainTable").insertBefore(body, misc_body);
+
+				groupCount[group_id] = 1;
+			}
+		} else {
+			groupCount["misc"] += 1;
+		}
+	}
+
+	for(let i=0; i < numOfParams; i++) {
+		param = params[i];
+		var row = document.createElement("TR");
+		row.setAttribute("class", "btn-row");
+		
+		if ( group_id = params[i].group ) {
+			if ( !document.getElementById(group_id).hasChildNodes() && groupTitle[group_id] ) {
+				row.appendChild(createTitleCell(groupTitle[group_id], groupCount[group_id]));
+			}
+		} else {
+			group_id = "misc";
+		}
+		if ( !groupTitle[group_id] ) {
+				row.appendChild(createTitleCell(params[i].title));
+		}
+		
+		for(let j=0; j < max_btns; j++) {
+			btnCell = createButton(params[i].name, params[i].value[j], params[i].btnText[j]);
+			row.appendChild(btnCell);
+		}
+		document.getElementById(group_id).appendChild(row);
+	}
+}
+function createTable_m() {
+	let groups = ["misc"];
+	let groupCount = {misc:0};
+	var group_id;
+	const max_btns = 3;
+	for(let i=0; i < numOfParams; i++) {
+		if (group_id = params[i].group) {	
+			if ( groupCount[group_id] ) {
+				groupCount[group_id] += 1;
+			} else {
+				var body = document.createElement("TBODY");
+				body.setAttribute("class","solid-border");
+				body.setAttribute("id",group_id);
+				misc_body = document.getElementById("misc");
+				document.getElementById("mainTable").insertBefore(body, misc_body);
+
+				groupCount[group_id] = 1;
+			}
+		} else {
+			groupCount["misc"] += 1;
+		}
+	}
+
+	for(let i=0; i < numOfParams; i++) {
+		param = params[i];
+		var title_row = 0;
+		
+		if ( group_id = params[i].group ) {
+			if ( !document.getElementById(group_id).hasChildNodes() && groupTitle[group_id] ) {
+				var title_row = document.createElement("TR");
+				title_row.setAttribute("class","btn-row");
+				var title_cell = createTitleCell(groupTitle[group_id]);
+				title_cell.setAttribute("colspan","3");
+				title_row.appendChild(title_cell);
+			}
+		} else {
+			group_id = "misc";
+		}
+		var btn_row = document.createElement("TR");
+		btn_row.setAttribute("class", "btn-row");
+
+		if ( !groupTitle[group_id] ) {
+				var title_row = document.createElement("TR");
+				title_row.setAttribute("class","btn-row");
+				var title_cell = createTitleCell(param.title);
+				title_cell.setAttribute("colspan","3");
+				title_row.appendChild(title_cell);
+		}
+		
+		for(let j=0; j < max_btns; j++) {
+			btnCell = createButton(params[i].name, params[i].value[j], params[i].btnText[j]);
+			btn_row.appendChild(btnCell);
+		}
+		if (title_row) {
+			document.getElementById(group_id).appendChild(title_row);
+		}
+		document.getElementById(group_id).appendChild(btn_row);
+	}
 }
