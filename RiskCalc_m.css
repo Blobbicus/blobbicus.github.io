@@ -176,3 +176,9 @@ tr {
   transition: max-height 0.2s ease-out;
 }
 /* End of collapsible */
+
+.image-svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

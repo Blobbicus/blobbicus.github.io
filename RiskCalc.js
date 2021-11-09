@@ -59,13 +59,6 @@ params.push(SvO2);
 const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise training", Biochem:"Biochemical markers <sup>¤*</sup>", 
 			Imaging:"Imaging <sup>¤</sup> <small>(echocardiography, cardiac magnetic resonance)</small>", Haemodynamics:"Haemodynamics <sup>¤</sup>"};
 
-// Color scheme
-const value_low = 1;
-const value_mid = 2;
-const value_high = 3;
-const color_low = [ ];
-const color_mid = [];
-const color_high = [];
 
 // Number of params in array
 const numOfParams = params.length;
@@ -121,7 +114,7 @@ function updateRisk() {
 
 
 	// Update and display risk value if min. number of params are used.
-	for (let i=0; i<numOfRisks; i++) {
+	/*for (let i=0; i<numOfRisks; i++) {
 		if (riskValue[i] && paramCount[i] >= paramMin ) {
 			riskRate = [" (Low risk)", " (Intermediate risk)", " (High risk)"];
 			document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[Math.round(riskValue[i])-1];
@@ -138,6 +131,32 @@ function updateRisk() {
 			default:
 				document.getElementById(riskID[i]).style.backgroundColor = "white";
 		}
+		} else { // Do if too few parameters were used.
+			document.getElementById(riskID[i]).innerHTML = `Use &geq; ${paramMin} parameters`;
+			document.getElementById(riskID[i]).style.backgroundColor = "white";
+		}
+		
+	}*/
+	for (let i=0; i<numOfRisks; i++) {
+		if (riskValue[i] && paramCount[i] >= paramMin ) {
+			const riskRate = [" (Low risk)", " (Low Intermediate)"," (High Intermediate)", " (High risk)"];
+			if ( riskValue[i] <= 1.5 ) {
+			// If riskValue rounds to 1
+				document.getElementById(riskID[i]).style.backgroundColor = "var(--low-green)";
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[0];		
+			} else if ( riskValue[i] <= 2.0 ) {
+			// If riskValue rounds to 2
+				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-yellow)";
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[1];			
+			} else if ( riskValue[i] <= 2.5 ) {
+			// If riskValue rounds to 2
+				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-orange)";
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[2];			
+			} else if ( riskValue[i] <= 3 ) {
+			// If riskValue rounds to 3
+				document.getElementById(riskID[i]).style.backgroundColor = "var(--high-red)";
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[3];		
+			}
 		} else { // Do if too few parameters were used.
 			document.getElementById(riskID[i]).innerHTML = `Use &geq; ${paramMin} parameters`;
 			document.getElementById(riskID[i]).style.backgroundColor = "white";
