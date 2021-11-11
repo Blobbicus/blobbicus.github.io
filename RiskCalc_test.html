@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="RiskCalc.css">
+	<link rel="stylesheet" media="print" href="RiskCalc_print.css">
  	<script type="text/javascript" src="RiskCalc.js"></script>
 </head>
 
@@ -22,7 +23,7 @@
 <section class="resultbar">
 	<button class="reset-btn" onclick="copyData()">Copy to Clipboard</button>
 
-	<button class="reset-btn" onclick="printTable()">Print</button>
+	<button class="reset-btn" onclick="window.print()">Print</button>
 
 	<button class="reset-btn" onclick="resetCalc()">Reset</button>
 </section>
@@ -30,7 +31,7 @@
 
 <section class="container">
 
-	<table class="table table-bordered" id="mainTable" style="width:80%;border:2px solid black;">
+	<table class="table table-bordered" id="mainTable">
 	
 	<!--
 	<tr>
@@ -66,9 +67,9 @@
 	</tr>
 
 	<tr class="header-row">
-		<th class="header-cell" style="width:180px;background-color: var(--low-green);">Low risk (<5%)</th>
-		<th class="header-cell" style="width:180px;background-color: var(--mid-yellow);">Intermediate risk (5-10%)</th>
-		<th class="header-cell" style="width:180px;background-color: var(--high-red);">High risk (>10%)</th>
+		<th class="header-cell" style="width:160px;background-color: var(--low-green);">Low risk (<5%)</th>
+		<th class="header-cell" style="width:160px;background-color: var(--mid-yellow);">Intermediate risk (5-10%)</th>
+		<th class="header-cell" style="width:160px;background-color: var(--high-red);">High risk (>10%)</th>
 	</tr>
 	</tbody>
 
@@ -141,8 +142,8 @@
 	</table>
 
 	<!-- Collapsible enviroment with extra information -->
-	<button class="collapsible" onclick="collapseContent(this)">Additional information</button>
-	<div class="collapsible-content">
+	<button class="collapsible"  onclick="collapseContent(this)">Additional information</button>
+	<div id="info" class="collapsible-content">
 	<ul>
 		<li>
 			The risk calculator variables and cut-offs are based on expert opinion according to the 2015 ESC/ERS pulmonary hypertension guidelines <small>[1]</small> which have been validated <small>[2-6]</small>. The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intended to be used as or replacing clinical or medical assessment, diagnosis, or treatment.
@@ -163,8 +164,8 @@
 	</div>
 
 	<!-- Collapsible enviroment with article references -->
-	<button class="collapsible" onclick="collapseContent(this)">References</button>
-	<div class="collapsible-content">
+	<button class="collapsible"  onclick="collapseContent(this)">References</button>
+	<div id="ref" class="collapsible-content">
 	<ol>
 		<li>Galiè N, Humbert M, Vachiery J-L, Gibbs S, Lang I, Torbicki A, Simonneau G, Peacock A, Vonk Noordegraaf A, Beghetti M, Ghofrani A, Gomez Sanchez MA, Hansmann G, Klepetko W, Lancellotti P, Matucci M, McDonagh T, Pierard LA, Trindade PT, Zompatori M, Hoeper M. 2015 ESC/ERS Guidelines for the diagnosis and treatment of pulmonary hypertension. European Respiratory Journal 2015: 46(4): 903.</li>
 		<li>Kylhammar D, Kjellström B, Hjalmarsson C, Jansson K, Nisell M, Söderberg S, Wikström G, Rådegran G. A comprehensive risk stratification at early follow-up determines prognosis in pulmonary arterial hypertension. Eur Heart J 2018 (first published June 01, 2017): 39(47): 4175-4181.</li>
