@@ -32,7 +32,7 @@ params.push(WHO_FC);
 const MWT = {name:"MWT", group:"WHO_walk", meta_group:"Modifiable", weight:[1,1,1,1], weight_f:[1,1], value:[1,2,3], title:"Six-minute walking distance <sup>¤</sup>", btnText:["> 440 m","165 - 440 m","< 165 m"]};
 params.push(MWT);
 // Peak VO_2
-const Peak_VO2 = {name:"Peak_VO2", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Peak VO2", btnText:["Peak VO<sub>2</sub> > 15 ml/min/kg","Peak VO<sub>2</sub> 11 - 15 ml/min/kg","Peak VO<sub>2</sub> < 11 ml/min/kg"]};
+const Peak_VO2 = {name:"Peak_VO2", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Peak VO2", btnText:["Peak VO<sub>2</sub>&nbsp;> 15 ml/min/kg","Peak VO<sub>2</sub>&nbsp;11 - 15 ml/min/kg","Peak VO<sub>2</sub>&nbsp;< 11 ml/min/kg"]};
 params.push(Peak_VO2);
 //
 const Predicted_VO2 = {name:"Predicted_VO2", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Predicted VO2", btnText:["> 65% of predicted","35 - 65% of predicted","< 35% of predicted"]};
@@ -59,10 +59,10 @@ params.push(MRAP);
 const CI = {name:"CI", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[1,0], value:[1,2,3], title:"CI", btnText:["CI &GreaterEqual; 2.5 l/min/m<sup>2</sup>","CI 2.0 - 2.4 l/min/m<sup>2</sup>","CI < 2.0 l/min/m<sup>2</sup>"]};
 params.push(CI);
 //
-const SvO2 = {name:"SvO2", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[0,0], value:[1,2,3], title:"SvO2", btnText:["SvO<sub>2</sub> > 65%","SvO<sub>2</sub> 60% - 65%","SvO<sub>2</sub> < 60%"]};
+const SvO2 = {name:"SvO2", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[0,0], value:[1,2,3], title:"SvO2", btnText:["SvO<sub>2</sub>&nbsp;> 65%","SvO<sub>2</sub>&nbsp;60% - 65%","SvO<sub>2</sub>&nbsp;< 60%"]};
 params.push(SvO2);
 // Set group titles
-const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise training", Biochem:"Biochemical markers <sup>¤*</sup>", 
+const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise testing", Biochem:"Biochemical markers <sup>¤*</sup>", 
 			Imaging:"Imaging <sup>¤</sup> <small>(echocardiography, cardiac magnetic resonance)</small>", Haemodynamics:"Haemodynamics <sup>¤</sup>"};
 const metaGroupTitle = {Clinical:"Clinical Observations", Modifiable:"Modifiable Parameters"};
 
@@ -119,7 +119,7 @@ function updateRisk() {
 
 	for (let i=0; i<numOfRisks; i++) {
 		if (riskValue[i] && paramCount[i] >= paramMin ) {
-			const riskRate = [" (Low)", " (Low-intermediate)"," (High-intermediate)", " (High)"];
+			const riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Low-intermediate)</small>","&nbsp;<small>(High-intermediate)</small>", "&nbsp;<small>(High)</small>"];
 			//const riskRate = [" (Low risk)", " (Low-intermediate risk)"," (High-intermediate risk)", " (High risk)"];
 			if ( riskValue[i] < 1.5 ) {
 			// If riskValue rounds to 1
@@ -182,7 +182,7 @@ function updateRisk_f() {
 	riskValue_f[0] = sum[0];
 	riskValue_f[1] = sum[1];
 	// French invasive
-	var riskRate = [" (Low)", " (Intermediate)", " (High)"];
+	var riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Intermediate)</small>", "&nbsp;<small>(High)</small>"];
 	//var riskRate = [" (Low risk)", " (Intermediate risk)", " (High risk)"];
 	if ( paramCount[0] >= paramMin ) {
 		if ( riskValue_f[0] >= 3 ) {
@@ -203,7 +203,7 @@ function updateRisk_f() {
 		document.getElementById(riskID_f[0]).style.backgroundColor = "white";
 	}
 	// French non-invasive
-	riskRate = [" (Low)", " (N/A)", " (High)"];
+	riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(N/A)</small>", "&nbsp;<small>(High)</small>"];
 	//var riskRate = [" (Low risk)", " (N/A)", " (High risk)"];
 	if ( paramCount[1] >= paramMin ) {
 		if ( riskValue_f[1] >= 3 ) {
@@ -286,17 +286,18 @@ function copyData() {
 	for( let i = 0; i<numOfParams; i++ ) {
 		copyStr += `\n${params[i].title}\t${params[i].btnText[testValue[i]-1]}\t${testValue[i]}`;
 	}
-	const riskGroup = ["Low risk", "Low-Intermediate risk", "High-Intermediate risk", "High risk"];
+	var riskGroup = ["Low risk", "Low-Intermediate risk", "High-Intermediate risk", "High risk"];
 	var risk_group;
 	copyStr += "\nRisk Group";
 	for ( let i = 0; i<riskID.length; i++) {
 		risk_group = riskGroup[Math.round(4*riskValue[i]/3)-1];
 		copyStr += `\n${riskTitle[i]}\t${risk_group}\t${riskValue[i].toFixed(2)}`;
 	}
+	riskGroup = ["Low risk", "Low risk", "High risk"];
 	copyStr += "\nFrench Risk Strategy";
-	for ( let i = 0; i<riskID_french.length; i++) {
-		risk_group = riskGroup[Math.round(4*riskValue[i]/3)];
-		copyStr += `\n${riskTitle_french[i]}\t${i}\t${i+1}`;
+	for ( let i = 0; i<riskID_f.length; i++) {
+		risk_group = riskGroup[Math.round(riskValue_f[i])];
+		copyStr += `\n${riskTitle_f[i]}\t${risk_group}\t${riskValue_f[i]}`;
 	}
 	navigator.clipboard.writeText(copyStr);
 }

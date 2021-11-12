@@ -41,6 +41,7 @@ tr {
   -webkit-transform:rotate(-90deg);
 }
 .header-row > .header-cell {
+  font-size: 12px;
   vertical-align: middle;
   text-align: center;
   border: 2px solid black;
