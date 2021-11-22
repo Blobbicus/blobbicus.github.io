@@ -17,50 +17,50 @@ const PH_NAME = {name:"PH_NAME", weight:[0,0,0], value:[1,2,3], title:"", btnTex
 params.push(PH_NAME);
 */
 //RV Failure
-const RV_Fail = {name:"RV_Fail", group:"Sympt", meta_group:"Clinical", weight:[1,0,0,0], weight_f:[0,0], value:[1,0,3], title:"Clinical signs of right heart failure", btnText:["Absent","-","Present"]};
-params.push(RV_Fail);
+//const RV_Fail = {name:"RV_Fail", group:"Sympt", meta_group:"Clinical", weight:[1,0,0,0], weight_f:[0,0], value:[1,0,3], title:"Clinical signs of right heart failure", btnText:["Absent","-","Present"]};
+//params.push(RV_Fail);
 // Progression of Symptoms
-const Sympt_Prog = {name:"Sympt_Prog", group:"Sympt", meta_group:"Clinical", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Progression of symptoms", btnText:["No","Slow","Rapid"]};
-params.push(Sympt_Prog);
+//const Sympt_Prog = {name:"Sympt_Prog", group:"Sympt", meta_group:"Clinical", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Progression of symptoms", btnText:["No","Slow","Rapid"]};
+//params.push(Sympt_Prog);
 // Syncope
-const Syncope = {name:"Syncope", group:"Sympt", meta_group:"Clinical", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Syncope", btnText:["No","Occasionally","Repeated syncope"]};
-params.push(Syncope);
+//const Syncope = {name:"Syncope", group:"Sympt", meta_group:"Clinical", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Syncope", btnText:["No","Occasionally","Repeated syncope"]};
+//params.push(Syncope);
 // WHO-FC
-const WHO_FC = {name:"WHO_FC", group:"WHO_walk", meta_group:"Modifiable", weight:[1,1,1,2], weight_f:[1,1], value:[1,2,3], title:"WHO functional class <sup>¤</sup>", btnText:["I, II","III","IV"]};
+const WHO_FC = {name:"WHO_FC", group:"WHO_walk", meta_group:"Modifiable", weight:[1,1,1,2], weight_f:[1,1], value:[1,0,3,4], title:"WHO functional class <sup>¤</sup>", btnText:["I, II","-","III","IV"]};
 params.push(WHO_FC);
 // 6MWT
-const MWT = {name:"MWT", group:"WHO_walk", meta_group:"Modifiable", weight:[1,1,1,1], weight_f:[1,1], value:[1,2,3], title:"Six-minute walking distance <sup>¤</sup>", btnText:["> 440 m","165 - 440 m","< 165 m"]};
+const MWT = {name:"MWT", group:"WHO_walk", meta_group:"Modifiable", weight:[1,1,1,1], weight_f:[1,1], value:[1,2,3,4], title:"Six-minute walking distance <sup>¤</sup>", btnText:["> 440 m","320 - 440 m","319 - 165 m","< 165 m"]};
 params.push(MWT);
 // Peak VO_2
-const Peak_VO2 = {name:"Peak_VO2", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Peak VO2", btnText:["Peak VO<sub>2</sub>&nbsp;> 15 ml/min/kg","Peak VO<sub>2</sub>&nbsp;11 - 15 ml/min/kg","Peak VO<sub>2</sub>&nbsp;< 11 ml/min/kg"]};
-params.push(Peak_VO2);
+//const Peak_VO2 = {name:"Peak_VO2", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Peak VO2", btnText:["Peak VO<sub>2</sub>&nbsp;> 15 ml/min/kg","Peak VO<sub>2</sub>&nbsp;11 - 15 ml/min/kg","Peak VO<sub>2</sub>&nbsp;< 11 ml/min/kg"]};
+//params.push(Peak_VO2);
 //
-const Predicted_VO2 = {name:"Predicted_VO2", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Predicted VO2", btnText:["> 65% of predicted","35 - 65% of predicted","< 35% of predicted"]};
-params.push(Predicted_VO2);
+//const Predicted_VO2 = {name:"Predicted_VO2", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Predicted VO2", btnText:["> 65% of predicted","35 - 65% of predicted","< 35% of predicted"]};
+//params.push(Predicted_VO2);
 // VE / VO_2 slope
-const VE_slope = {name:"VE_slope", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"VE/VO2-slope", btnText:["VE/VO<sub>2</sub>-slope < 36","VE/VO<sub>2</sub>-slope 36 - 44.9","VE/VO<sub>2</sub>-slope &GreaterEqual; 45"]};
-params.push(VE_slope);
+//const VE_slope = {name:"VE_slope", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"VE/VO2-slope", btnText:["VE/VO<sub>2</sub>-slope < 36","VE/VO<sub>2</sub>-slope 36 - 44.9","VE/VO<sub>2</sub>-slope &GreaterEqual; 45"]};
+//params.push(VE_slope);
 //
-const proBNP = {name:"proBNP", group:"Biochem", meta_group:"Modifiable", weight:[1,1,1,1], weight_f:[0,1], value:[1,2,3], title:"NT-proBNP", btnText:["NT-proBNP < 300 ng/l","NT-proBNP 300 - 1400 ng/l","NT-proBNP > 1400 ng/l"]};
+const proBNP = {name:"proBNP", group:"Biochem", meta_group:"Modifiable", weight:[1,1,1,1], weight_f:[0,1], value:[1,2,3,4], title:"NT-proBNP", btnText:["NT-proBNP < 300 ng/l","NT-proBNP 300 - 649 ng/l","NT-proBNP 650 - 1100 ng/l","NT-proBNP > 1100 ng/l"]};
 params.push(proBNP);
 //
-const BNP = {name:"BNP", group:"Biochem", meta_group:"Modifiable", weight:[1,1,1,1], weight_f:[0,1], value:[1,2,3], title:"BNP", btnText:["BNP < 50 ng/l","BNP 50 - 300 ng/l","BNP > 300 ng/l"]};
+const BNP = {name:"BNP", group:"Biochem", meta_group:"Modifiable", weight:[1,1,1,1], weight_f:[0,1], value:[1,2,3,4], title:"BNP", btnText:["BNP < 50 ng/l","BNP 50 - 199 ng/l","BNP 200 - 800 ng/l","BNP > 800 ng/l"]};
 params.push(BNP);
 //
-const RAarea = {name:"RAarea", group:"Imaging", meta_group:"Modifiable", weight:[1,0,1,0], weight_f:[0,0], value:[1,2,3], title:"RA area", btnText:["RA area < 18 cm<sup>2</sup>","RA area 18 - 26 cm<sup>2</sup>","RA area > 26 cm<sup>2</sup>"]};
-params.push(RAarea);
+//const RAarea = {name:"RAarea", group:"Imaging", meta_group:"Modifiable", weight:[1,0,1,0], weight_f:[0,0], value:[1,2,3], title:"RA area", btnText:["RA area < 18 cm<sup>2</sup>","RA area 18 - 26 cm<sup>2</sup>","RA area > 26 cm<sup>2</sup>"]};
+//params.push(RAarea);
 //
-const Pericardial_Effusion = {name:"Pericardial_Effusion", meta_group:"Modifiable", group:"Imaging", weight:[1,0,1,0], weight_f:[0,0], value:[1,2,3], title:"Pericardial effusion", btnText:["No pericardial effusion","Minimal pericardial effusion","Pericardial effusion"]};
-params.push(Pericardial_Effusion);
+//const Pericardial_Effusion = {name:"Pericardial_Effusion", meta_group:"Modifiable", group:"Imaging", weight:[1,0,1,0], weight_f:[0,0], value:[1,2,3], title:"Pericardial effusion", btnText:["No pericardial effusion","Minimal pericardial effusion","Pericardial effusion"]};
+//params.push(Pericardial_Effusion);
 //
-const MRAP = {name:"MRAP", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[1,0], value:[1,2,3], title:"MRAP", btnText:["RAP &leq; 8 mmHg","RAP 8 - 14 mmHg","RAP > 14 mmHg"]};
-params.push(MRAP);
+//const MRAP = {name:"MRAP", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[1,0], value:[1,2,3], title:"MRAP", btnText:["RAP &leq; 8 mmHg","RAP 8 - 14 mmHg","RAP > 14 mmHg"]};
+//params.push(MRAP);
 //
-const CI = {name:"CI", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[1,0], value:[1,2,3], title:"CI", btnText:["CI &GreaterEqual; 2.5 l/min/m<sup>2</sup>","CI 2.0 - 2.4 l/min/m<sup>2</sup>","CI < 2.0 l/min/m<sup>2</sup>"]};
-params.push(CI);
+//const CI = {name:"CI", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[1,0], value:[1,2,3], title:"CI", btnText:["CI &GreaterEqual; 2.5 l/min/m<sup>2</sup>","CI 2.0 - 2.4 l/min/m<sup>2</sup>","CI < 2.0 l/min/m<sup>2</sup>"]};
+//params.push(CI);
 //
-const SvO2 = {name:"SvO2", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[0,0], value:[1,2,3], title:"SvO2", btnText:["SvO<sub>2</sub>&nbsp;> 65%","SvO<sub>2</sub>&nbsp;60% - 65%","SvO<sub>2</sub>&nbsp;< 60%"]};
-params.push(SvO2);
+//const SvO2 = {name:"SvO2", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[0,0], value:[1,2,3], title:"SvO2", btnText:["SvO<sub>2</sub>&nbsp;> 65%","SvO<sub>2</sub>&nbsp;60% - 65%","SvO<sub>2</sub>&nbsp;< 60%"]};
+//params.push(SvO2);
 // Set group titles
 const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise testing", Biochem:"Biochemical markers <sup>¤*</sup>", 
 			Imaging:"Imaging <sup>¤</sup> <small>(echocardiography, cardiac magnetic resonance)</small>", Haemodynamics:"Haemodynamics <sup>¤</sup>"};
@@ -125,15 +125,15 @@ function updateRisk() {
 			// If riskValue rounds to 1
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--low-green)";
 				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[0];		
-			} else if ( riskValue[i] < 2.0 ) {
+			} else if ( riskValue[i] < 2.5 ) {
 			// If riskValue rounds to 2
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-yellow)";
 				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[1];			
-			} else if ( riskValue[i] < 2.5 ) {
+			} else if ( riskValue[i] <= 3.5 ) {
 			// If riskValue rounds to 2
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-orange)";
 				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[2];			
-			} else if ( riskValue[i] <= 3 ) {
+			} else if ( riskValue[i] <= 4 ) {
 			// If riskValue rounds to 3
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--high-red)";
 				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[3];		
@@ -302,8 +302,8 @@ function copyData() {
 	navigator.clipboard.writeText(copyStr);
 }
 
-function goTo4() {
-	document.location = "RiskCalc4.html";
+function goTo3() {
+	document.location = "RiskCalc.html";
 }
 
 function createButton(name, value, btn_text) {
@@ -349,7 +349,7 @@ function createTable() {
 	let metaGroupCount = {misc:0};
 	var group_id;
 	var meta_id;
-	const max_btns = 3;
+	const max_btns = 4;
 	// Count content of group and meta-group.
 	for(let i=0; i < numOfParams; i++) {
 		// Count groups, add table body for new groups.
@@ -378,7 +378,7 @@ function createTable() {
 		} else {
 			metaGroupCount["misc"] += 1;
 		}
-		console.log(`Meta-group ${meta_id} count ${metaGroupCount[meta_id]}`)
+		//console.log(`Meta-group ${meta_id} count ${metaGroupCount[meta_id]}`)
 	}
 
 	// Add group titles
@@ -430,7 +430,7 @@ function createTable_m() {
 	let groups = ["misc"];
 	let groupCount = {misc:0};
 	var group_id;
-	const max_btns = 3;
+	const max_btns = 4;
 	for(let i=0; i < numOfParams; i++) {
 		if (group_id = params[i].group) {	
 			if ( groupCount[group_id] ) {
