@@ -45,12 +45,12 @@
 	-->
 	<tbody class="solid-border">
 	<tr class="title-row">
-		<th colspan="4">
-		Pulmonary Arterial Hypertension Risk Score Calculator 
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+		<th colspan="5">
+		Pulmonary Arterial Hypertension Risk Score Calculator - 3 Strata
+		<!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
 		  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 		  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-		</svg>
+		</svg>-->
 		<br>
 		<small>Developed by Abdulla Ahmed, Daniel Kempe, Salaheldin Ahmed and Göran Rådegran</small><br>
 		<small>Select the available risk category for each parameter</small>
@@ -60,10 +60,10 @@
 
 	<tbody class="solid-border">
 	<tr class="header-row">
-		<th class="header-cell" colspan="1" rowspan="2">
+		<th class="header-cell" colspan="2" rowspan="2" style="border: 2px solid black;">
 			Determinants of prognosis
 		</th>
-		<th class="header-cell" colspan="3">
+		<th class="header-cell" colspan="3" style="border: 2px solid black;">
 			Risk Group Corresponding to 1-year Mortality
 		</th>
 	</tr>
@@ -83,44 +83,51 @@
 
 	<!-- Start of result section -->
 	<tr class="title-row">
-		<th colspan="4">
-			Calculated ESC/ERS Risk Scores <small>1-6</small>
+		<th colspan="5">
+			Calculated ESC/ERS Risk Scores <sub>1-6</sub>
 		</th>
 	</tr>
 
 	<tr class="header-row">
+		<th class="header-cell">N</th>
 		<th class="header-cell">Risk Assesment Strategy</th>
 		<th class="header-cell">Risk Score</th>
 		<th class="header-cell" colspan="2">Key for Interpretation</th>
 	</tr>
 
 	<tr class="title-row">
-		<th colspan="2">
+		<th colspan="3">
 		SPAHR-equation derived risk scores
-		<td colspan="2" rowspan="5" class="image-cell">
-			<object data="interpretation-key.svg" class="image-svg" width="100%" height="100%"></object>
+		</th>
+		<td colspan="2" rowspan="4" class="image-cell">
+			<object data="int-key-4scale.svg" class="image-svg" width="100%" height="100%"></object>
 		</td>
 	</tr>
 
 	<tr class="result-row">
-		<td class="title-cell">Extended<small> (using all available parameters above in SPAHR equation)</small></td>
+		<td class="result-cell" id="result_Full_count">0/14</td>
+		<td class="title-cell" onmouseenter="highlightParam('result_Full')" onmouseout="highlightParam()">
+			Extended<!--<small> (using all available parameters above in SPAHR equation)</small>-->
+		</td>
 		<td class="result-cell" id="result_Full">Use &geq; 3 parameters</td>
 	</tr>
 
 	<tr class="result-row">
-		<td class="title-cell">SPAHR-Kylhammar<small> (up to 8 determinats of prognosis)</small></td>
+		<td class="result-cell" id="result_SPAHR_count">0/8</td>
+		<td class="title-cell" onmouseenter="highlightParam('result_SPAHR')" onmouseout="highlightParam()">
+			SPAHR-Kylhammar<!--<small> (up to 8 determinats of prognosis)</small>-->
+		</td>
 		<td class="result-cell" id="result_SPAHR">Use &geq; 3 parameters</td>
 	</tr>
 
 	<tr class="result-row">
-		<td class="title-cell">COMPERA <small> (up to 6 parameters, without RA area and pericardial effusion)</small></td>
+		<td class="result-cell" id="result_Compera_count">0/6</td>
+		<td class="title-cell" onmouseenter="highlightParam('result_Compera')" onmouseout="highlightParam()">
+			COMPERA <!--<small> (up to 6 parameters, without RA area and pericardial effusion)</small>-->
+		</td>
 		<td class="result-cell" id="result_Compera">Use &geq; 3 parameters</td>
 	</tr>
 	
-	<tr class="result-row">
-		<td class="title-cell">Blank row - remove later</td>
-		<td class="result-cell">-</td>
-	</tr>
 	<!--
 	<tr class="result-row">
 		<td class="title-cell">Weighted non-invasive<sup>#</sup> <small> (WHO FC, 6MWD and BNP/NT-proBNP)</small></td>
@@ -129,21 +136,27 @@
 	-->
 
 	<tr class="title-row">
-		<th colspan="2">
+		<th colspan="3">
 		French strategy - number of low-risk parameters
 		</th>
 		<td colspan="2" rowspan="3" class="image-cell">
-			<object data="interpretation-key2.svg" class="image-svg" width="100%" height="100%"></object>
+			<object data="int-key-french.svg" class="image-svg" width="100%" height="100%"></object>
 		</td>
 	</tr>
 
 	<tr class="result-row">
-		<td class="title-cell">French invasive<small> (WHO-FC, 6MWD, RAP, CI)</small></td>
+		<td class="result-cell" id="result_french1_count">0/4</td>
+		<td class="title-cell" onmouseenter="highlightParam_f('result_french1')" onmouseout="highlightParam_f()">
+			French invasive<!--<small> (WHO-FC, 6MWD, RAP, CI)</small>-->
+		</td>
 		<td class="result-cell" id="result_french1">Use &geq; 3 parameters</td>		
 	</tr>
 
 	<tr class="result-row">
-		<td class="title-cell">French non-invasive<small> (WHO-FC, 6MWD, BNP/NT-proBNP)</small></td>
+		<td class="result-cell" id="result_french2_count">0/3</td>
+		<td class="title-cell" onmouseenter="highlightParam_f('result_french2')" onmouseout="highlightParam_f()">
+			French non-invasive<!--<small> (WHO-FC, 6MWD, BNP/NT-proBNP)</small>-->
+		</td>
 		<td class="result-cell" id="result_french2">Use &geq; 3 parameters</td>
 	</tr>
 	
@@ -185,78 +198,6 @@
 		<li></li>
 	</ol>
 	</div>
-
-	<!-- Start of collapisble enviroment 
-	<button class="collapsible" onclick="collapseContent(this)">Collapse</button>
-	<div class="collapsible_content">
-	<div class="buttonSet">
-		<h3 class="col-xs-6">NAME</h3>
-	<div class="buttonRow">
-		<label id="PH_NAME_1" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="1" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 1</span>
-		</label>
-		<label id="PH_NAME_2" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="2" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 2</span>
-		</label>
-		<label id="PH_NAME_3" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="3" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 3</span>
-		</label>
-	</div>
-	</div>
-	</div>
-	End of collapsible enviroment -->
-
-<!-- 	
-	<div class="buttonSet">
-		<h3 class="col-xs-6">Place holder NAME</h3>
-	<div class="buttonRow">
-		<label id="PH_NAME_1" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="1" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 1</span>
-		</label>
-		<label id="PH_NAME_2" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="2" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 2</span>
-		</label>
-		<label id="PH_NAME_3" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="3" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 3</span>
-		</label>
-	</div>
-	</div> -->
-
-<!--
-	<tr class="btn-row">
-		<td class="title-cell">
-		PH NAME
-		</td>
-
-		<td class="btn-cell">
-		<label id="PH_NAME_1" class="radioButton">
-		<input type="radio" name="RV_Fail" value="1" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">-</span>
-		</label>
-		</td>
-
-		<td class="btn-cell">
-		<label id="PH_NAME_2" class="radioButton">
-		<input type="radio" name="PH_NAME" value="2" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">--</span>
-		</label>
-		</td>
-
-		<td class="btn-cell">
-		<label id="PH_NAME_3" class="radioButton">
-		<input type="radio" name="PH_NAME" value="3" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">---</span>
-		</label>
-		</td>
-	</tr>
--->
-
 
 </section>
 

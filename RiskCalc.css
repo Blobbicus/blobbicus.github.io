@@ -1,10 +1,12 @@
 :root {
   --low-green: #c6e0b4;
   --mid-yellow: #ffd966;
+  --mid-yellow-orange: #fbb84a;
   --mid-orange: #f7972d;
   --high-red: #ff5050;
   --background-blue: #203764;
   --highlight-blue: #3e6ca8;
+  --highlight-active: lightgrey;
 }
 /* table styling start */
 table {
@@ -13,7 +15,7 @@ table {
   border-spacing: 0px;
 }
 tr {
-  height: 25px;
+  height: 30px;
 }
 #mainTable {
   width: 80%;
@@ -30,21 +32,33 @@ tr {
   border-right: 2px solid black;
 }
 .result-row > .title-cell {
-  font-size: 12px;
+  font-size: 14px;
   vertical-align: middle;
   padding-left: 10px;
 }
 .image-cell {
 
 }
+.meta-cell {
+  max-width: 40px;
+  overflow: hidden;
+  text-align: center;
+  justify-content: center;
+}
 .meta-cell > .meta-text {
+  display: flex;
+  align-text: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 10px;
   -webkit-transform:rotate(-90deg);
 }
 .header-row > .header-cell {
   font-size: 12px;
   vertical-align: middle;
   text-align: center;
-  border: 2px solid black;
+  /*border: 2px solid black;*/
+  border: none;
 }
 .title-row > th {
   height: 40px;
@@ -53,6 +67,12 @@ tr {
   color: white;
   text-align: center;
   border: 2px solid black;
+}
+.highlight-active > td, .highlight-active > td > label > .checkmark {
+  background-color: var(--highlight-active);
+}
+.result-row > .title-cell:hover {
+  background-color: var(--highlight-active);
 }
 .result-cell {
   font-size: 14px;

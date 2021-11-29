@@ -81,6 +81,7 @@ function updateRisk() {
 	let sum = new Array(numOfRisks).fill(0);
 	let w = new Array(numOfRisks).fill(0);
 	let paramCount = new Array(numOfRisks).fill(0); // Count the number of used params
+	let paramTotal = new Array(numOfRisks).fill(0); // Count total available params
 	const paramMin = 3; // The minimum number of params for which a value is displayed.
 	
 	// Add up the sum and weights of all params for each risk
@@ -88,7 +89,9 @@ function updateRisk() {
 		for (let j = 0; j < numOfParams; j++) {
 			sum[i] += params[j].weight[i]*testValue[j];
 			w[i] += (testValue[j]!=0)*params[j].weight[i];
-			paramCount[i] += (testValue[j]!=0)*(params[j].weight[i]!=0);		}
+			paramCount[i] += (testValue[j]!=0)*(params[j].weight[i]!=0);
+			paramTotal[i] += (params[j].weight[i]!=0)*(params[j].name!="BNP");
+		}
 	}
 	
 	// Special code for BNP/proBNP hierarchy
@@ -105,7 +108,7 @@ function updateRisk() {
 		for(let i = 0; i < numOfRisks; i++) {
 			sum[i] -= testValue[BNP_index]*params[BNP_index].weight[i];
 			w[i] -= params[BNP_index].weight[i];
-			paramCount[i] -= (params[BNP_index].weight[i]!=0)
+			paramCount[i] -= (params[BNP_index].weight[i]!=0);
 		}
 	}
 
@@ -118,6 +121,8 @@ function updateRisk() {
 	}
 
 	for (let i=0; i<numOfRisks; i++) {
+		//Set param count for each risk
+		document.getElementById(riskID[i]+"_count").innerHTML = `${paramCount[i]}/${paramTotal[i]}`;
 		if (riskValue[i] && paramCount[i] >= paramMin ) {
 			const riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Low-intermediate)</small>","&nbsp;<small>(High-intermediate)</small>", "&nbsp;<small>(High)</small>"];
 			//const riskRate = [" (Low risk)", " (Low-intermediate risk)"," (High-intermediate risk)", " (High risk)"];
@@ -150,6 +155,7 @@ function updateRisk_f() {
 
 	let sum = new Array(numOfRisks_f).fill(0);
 	let paramCount = new Array(numOfRisks_f).fill(0); // Count the number of used params
+	let paramTotal  = new Array(numOfRisks_f).fill(0); // Total available of params
 	const paramMin = 3; // The minimum number of params for which a value is displayed.
 	
 	// Add up the sum and weights of all params for each risk
@@ -158,6 +164,7 @@ function updateRisk_f() {
 			if (params[j].weight_f[i]) {
 				sum[i] += (testValue[j]==1);
 				paramCount[i] += (testValue[j]!=0)*(params[j].weight_f[i]!=0);
+				paramTotal[i] += (params[j].weight[i]!=0)*(params[j].name!="BNP");
 			}		
 		}
 	}
@@ -172,10 +179,10 @@ function updateRisk_f() {
 			proBNP_index = j;
 		}
 	}
-	if ( testValue[BNP_index] == 1 && testValue[proBNP_index] > 0 ) {
+	if ( testValue[BNP_index] > 0 && testValue[proBNP_index] > 0 ) {
 		for(let i = 0; i < numOfRisks_f; i++) {
 			sum[i] -= params[BNP_index].weight_f[i];
-			paramCount[i] -= (params[BNP_index].weight_f[i]!=0)
+			paramCount[i] -= (params[BNP_index].weight_f[i]!=0);
 		}
 	}
 	// Set risk value
@@ -183,6 +190,8 @@ function updateRisk_f() {
 	riskValue_f[1] = sum[1];
 	// French invasive
 	var riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Intermediate)</small>", "&nbsp;<small>(High)</small>"];
+	//Set param count for each risk
+	document.getElementById(riskID_f[0]+"_count").innerHTML = `${paramCount[0]}/${paramTotal[0]}`;
 	//var riskRate = [" (Low risk)", " (Intermediate risk)", " (High risk)"];
 	if ( paramCount[0] >= paramMin ) {
 		if ( riskValue_f[0] >= 3 ) {
@@ -204,6 +213,8 @@ function updateRisk_f() {
 	}
 	// French non-invasive
 	riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(N/A)</small>", "&nbsp;<small>(High)</small>"];
+	//Set param count for each risk
+	document.getElementById(riskID_f[1]+"_count").innerHTML = `${paramCount[1]}/${paramTotal[1]}`;
 	//var riskRate = [" (Low risk)", " (N/A)", " (High risk)"];
 	if ( paramCount[1] >= paramMin ) {
 		if ( riskValue_f[1] >= 3 ) {
@@ -245,6 +256,57 @@ function inputButton(name, val) {
 	updateRisk_f();
 }
 
+function highlightParam(id=null) {
+	var btn_row;
+	if (id) {
+		// Find the position of risk id
+		let j;
+		for (j = 0; j < numOfRisks; j++) {
+			if (riskID[j] == id) {
+				break;
+			}
+		}
+		for (let i = 0; i < numOfParams; i++) {
+			if (params[i].weight[j]) {
+				btn_row = document.getElementById(params[i].name);
+				btn_row.classList.toggle("highlight-active");
+			}
+		}
+	} else {
+		for (let i = 0; i < numOfParams; i++) {
+			btn_row = document.getElementById(params[i].name);
+			if ( btn_row.classList.contains("highlight-active") ) {
+				btn_row.classList.toggle("highlight-active");
+			}
+		}
+	}
+}
+
+function highlightParam_f(id=null) {
+	var btn_row;
+	if (id) {
+		// Find the position of risk id
+		let j;
+		for (j = 0; j < numOfRisks_f; j++) {
+			if (riskID_f[j] == id) {
+				break;
+			}
+		}
+		for (let i = 0; i < numOfParams; i++) {
+			if (params[i].weight_f[j]) {
+				btn_row = document.getElementById(params[i].name);
+				btn_row.classList.toggle("highlight-active");
+			}
+		}
+	} else {
+		for (let i = 0; i < numOfParams; i++) {
+			btn_row = document.getElementById(params[i].name);
+			if ( btn_row.classList.contains("highlight-active") ) {
+				btn_row.classList.toggle("highlight-active");
+			}
+		}
+	}
+}
 
 function collapseContent(btn) {
 	btn.classList.toggle("collapsible_open");
@@ -257,7 +319,7 @@ function collapseContent(btn) {
 		content.style.display = "none";
 	}
 	*/
-	console.log(content.style.maxHeight);
+	//console.log(content.style.maxHeight);
 	if (content.style.maxHeight) {
 		content.style.maxHeight = null;
 		//console.log("Closed collapsible!");
@@ -352,67 +414,83 @@ function createTable() {
 	const max_btns = 3;
 	// Count content of group and meta-group.
 	for(let i=0; i < numOfParams; i++) {
-		// Count groups, add table body for new groups.
-		if (group_id = params[i].group) {	
-			if ( groupCount[group_id] ) {
-				groupCount[group_id] += 1;
-			} else {
-				var body = document.createElement("DIV");
-				body.setAttribute("class","solid-border");
-				body.setAttribute("id",group_id);
-				misc_body = document.getElementById("misc");
-				document.getElementById("mainTable").insertBefore(body, misc_body);
-
-				groupCount[group_id] = 1;
-			}
-		} else {
-			groupCount["misc"] += 1;
-		}
-		// Count meta-groups.
+		// Count meta-groups, add tbody for each new group.
 		if (meta_id = params[i].meta_group) {	
 			if ( metaGroupCount[meta_id] ) {
+				// If meta-group tbody already created,
+				// increase counter by 1.
 				metaGroupCount[meta_id] += 1;
 			} else {
+				// If no tbody, create one for meta-group and add before "misc".
+				var body = document.createElement("TBODY");
+				body.setAttribute("class","solid-border");
+				body.setAttribute("id",meta_id);
+				misc_body = document.getElementById("misc");
+				document.getElementById("mainTable").insertBefore(body, misc_body);
+				// Add meta-group to counter.
 				metaGroupCount[meta_id] = 1;
 			}
 		} else {
+			// Add counter to misc meta-group if meta-group tag is missing.
 			metaGroupCount["misc"] += 1;
 		}
 		console.log(`Meta-group ${meta_id} count ${metaGroupCount[meta_id]}`)
+		// Count title groups.
+		if (group_id = params[i].group) {	
+			if ( groupCount[group_id] ) {
+				// If group in counter, increase by 1.
+				groupCount[group_id] += 1;
+			} else {
+				// Add group to counter of not included.
+				groupCount[group_id] = 1;
+			}
+		} else {
+			// If no group tag, add to misc counter.
+			groupCount["misc"] += 1;
+		}
 	}
-
 	// Add group titles
 	for(let i=0; i < numOfParams; i++) {
 		param = params[i];
+		// Create a new row for buttons.
 		var row = document.createElement("TR");
 		row.setAttribute("class", "btn-row");
+		row.setAttribute("id", params[i].name);
 		// Check if meta-group title cell should be appended.
 		/*
-			Check of meta-group count is larger than 0,
+			Check if meta-group count is larger than 0,
 			then add a meta-group cell if it is.
 			After that, set the count for that meta-group to 0.
-		
+		*/
 		if ( meta_id = params[i].meta_group ) {
 		} else {
 			params[i].meta_group = "misc";
 			meta_id = "misc";
 		}
 		if ( metaGroupCount[meta_id] > 0 ) {
+			// Create cell for meta title with rowspan equal to meta count.
 			var meta_cell = document.createElement("TD");
 			meta_cell.setAttribute("class", "meta-cell");
+			meta_cell.setAttribute("style", "border-right: 2px solid black");
 			meta_cell.setAttribute("rowspan", metaGroupCount[meta_id]);
-			//meta_cell.innerHTML = `<p class="meta-text">${metaGroupTitle[meta_id]}</p>`;
+			meta_cell.innerHTML = `<p class="meta-text">${metaGroupTitle[meta_id]}</p>`;
 			row.appendChild(meta_cell);
+			// Set counter for meta group to 0.
 			metaGroupCount[meta_id] = 0;
-		}*/
+		}
 		
 		// Check if group title cell or individual title cell should be appended.
 		if ( group_id = params[i].group ) {
-			if ( !document.getElementById(group_id).hasChildNodes() && groupTitle[group_id] ) { 
-				row.appendChild(createTitleCell(groupTitle[group_id], groupCount[group_id]));
+			if (  groupCount[group_id] > 0 ) {
+				// Create border separating new group.
+				row.setAttribute("style", "border-top: 2px solid black");
+				// If there is a group title, apply it.
+				if ( groupTitle[group_id] ) {
+					row.appendChild(createTitleCell(groupTitle[group_id], groupCount[group_id]));
+				}
+				// Set counter for group to 0.
+				groupCount[group_id] = 0;
 			}
-		} else {
-			group_id = "misc";
 		}
 		if ( !groupTitle[group_id] ) {
 				row.appendChild(createTitleCell(params[i].title));
@@ -423,7 +501,7 @@ function createTable() {
 			row.appendChild(btnCell);
 		}
 		
-		document.getElementById(group_id).appendChild(row);
+		document.getElementById(meta_id).appendChild(row);
 	}
 }
 function createTable_m() {
@@ -466,6 +544,7 @@ function createTable_m() {
 		}
 		var btn_row = document.createElement("TR");
 		btn_row.setAttribute("class", "btn-row");
+		btn_row.setAttribute("id", params[i].name);
 
 		if ( !groupTitle[group_id] ) {
 				var title_row = document.createElement("TR");

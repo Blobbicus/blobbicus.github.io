@@ -1,13 +1,10 @@
 // ID for result boxes
-const riskTitle = ["Extended", "COMPERA", "SPAHR"];//["Extended", "COMPERA", "SPAHR", "Weighted"];
-var riskID = ["result_Full", "result_Compera", "result_SPAHR"];//["result_Full", "result_Compera", "result_SPAHR", "result_Weighted"];
-const riskTitle_f = ["French Invasive", "French Non-Invasive"];
-var riskID_f = ["result_french1", "result_french2"];
+const riskTitle = ["COMPERA"];
+var riskID = ["result_Compera"];
 // Number of risk calculations
 var numOfRisks = riskID.length;
-var numOfRisks_f = riskID_f.length;
 let riskValue = new Array(numOfRisks).fill(0);
-let riskValue_f = new Array(numOfRisks_f).fill(0);
+
 
 // Array of all parameters
 let params = [];
@@ -129,7 +126,7 @@ function updateRisk() {
 			// If riskValue rounds to 2
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-yellow)";
 				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[1];			
-			} else if ( riskValue[i] <= 3.5 ) {
+			} else if ( riskValue[i] < 3.5 ) {
 			// If riskValue rounds to 2
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-orange)";
 				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[2];			
@@ -242,7 +239,7 @@ function inputButton(name, val) {
 		}
 	}
 	updateRisk();
-	updateRisk_f();
+	//updateRisk_f();
 }
 
 

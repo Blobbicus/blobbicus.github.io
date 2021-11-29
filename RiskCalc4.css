@@ -1,6 +1,7 @@
 :root {
   --low-green: #c6e0b4;
   --mid-yellow: #ffd966;
+  --mid-yellow-orange: #fbb84a;
   --mid-orange: #f7972d;
   --high-red: #ff5050;
   --background-blue: #203764;
@@ -44,7 +45,8 @@ tr {
   font-size: 12px;
   vertical-align: middle;
   text-align: center;
-  border: 2px solid black;
+  border: none;
+  /*border: 2px solid black;*/
 }
 .title-row > th {
   height: 40px;
