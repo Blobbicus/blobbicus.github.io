@@ -364,6 +364,9 @@ function copyData() {
 	navigator.clipboard.writeText(copyStr);
 }
 
+function goTo3() {
+	document.location = "RiskCalc.html";
+}
 function goTo4() {
 	document.location = "RiskCalc4.html";
 }

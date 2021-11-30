@@ -6,6 +6,7 @@
   --high-red: #ff5050;
   --background-blue: #203764;
   --highlight-blue: #3e6ca8;
+  --highlight-active: lightgrey;
 }
 /* table styling start */
 table {
@@ -38,7 +39,18 @@ tr {
 .image-cell {
 
 }
+.meta-cell {
+  max-width: 40px;
+  overflow: hidden;
+  text-align: center;
+  justify-content: center;
+}
 .meta-cell > .meta-text {
+  display: flex;
+  align-text: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 10px;
   -webkit-transform:rotate(-90deg);
 }
 .header-row > .header-cell {
@@ -55,6 +67,12 @@ tr {
   color: white;
   text-align: center;
   border: 2px solid black;
+}
+.highlight-active > td, .highlight-active > td > label > .checkmark {
+  background-color: var(--highlight-active);
+}
+.result-row > .title-cell:hover {
+  background-color: var(--highlight-active);
 }
 .result-cell {
   font-size: 14px;

@@ -27,7 +27,7 @@
 
 	<button class="reset-btn" onclick="resetCalc()">Reset</button>
 
-	<button class="reset-btn" onclick="goTo3()">3 Strata</button>
+	<button class="reset-btn" onclick="goTo3()">View 3-strata model</button>
 </section>
 
 
@@ -45,7 +45,7 @@
 	-->
 	<tbody class="solid-border">
 	<tr class="title-row">
-		<th colspan="5">
+		<th colspan="6">
 		Pulmonary Arterial Hypertension Risk Score Calculator - 4 Strata
 		<!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
 		  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -60,7 +60,7 @@
 
 	<tbody class="solid-border">
 	<tr class="header-row">
-		<th class="header-cell" colspan="1" rowspan="3" style="border: 2px solid black;">
+		<th class="header-cell" colspan="2" rowspan="3" style="border: 2px solid black;">
 			Determinants of prognosis
 		</th>
 		<th class="header-cell" colspan="4" style="border: 2px solid black;">
@@ -87,19 +87,20 @@
 
 	<!-- Start of result section -->
 	<tr class="title-row">
-		<th colspan="5">
+		<th colspan="6">
 			Calculated ESC/ERS Risk Scores <sub>1-6</sub>
 		</th>
 	</tr>
 
 	<tr class="header-row">
+		<th class="header-cell">N</th>
 		<th class="header-cell" colspan="4">Risk Assesment Strategy</th>
 		<th class="header-cell">Risk Score</th>
 		<!--<th class="header-cell" colspan="2">Key for Interpretation</th>-->
 	</tr>
 
 	<tr class="title-row">
-		<th colspan="5">
+		<th colspan="6">
 		SPAHR-equation derived risk scores
 		</th>
 		<!--<td colspan="2" rowspan="5" class="image-cell">
@@ -109,18 +110,26 @@
 
 
 	<tr class="result-row">
-		<td class="title-cell" colspan="4">COMPERA 2 <small> (up to 6 parameters, without RA area and pericardial effusion)</small></td>
+		<td class="result-cell" id="result_Compera_count">0/3</td>
+		<td class="title-cell" colspan="4" onmouseenter="highlightParam('result_Compera')" onmouseout="highlightParam()">
+			COMPERA 2 <!--<small> (up to 6 parameters, without RA area and pericardial effusion) </small>-->
+				
+		</td>
 		<td class="result-cell" id="result_Compera">Use &geq; 3 parameters</td>
 	</tr>
 	
 	</table>
 
 	<!-- Collapsible enviroment with extra information -->
-	<button class="collapsible"  onclick="collapseContent(this)">Additional information</button>
+	<button class="collapsible"  onclick="collapseContent(this)">Click to see Additional Information</button>
 	<div id="info" class="collapsible-content">
+	<p style="font-weight: bold;">By using the PAH risk calculator, the user agrees to and consent to be bound to the terms of use, as follows:</p>
 	<ul>
 		<li>
-			The risk calculator variables and cut-offs are based on expert opinion according to the 2015 ESC/ERS pulmonary hypertension guidelines <small>[1]</small> which have been validated <small>[2-6]</small>. The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intended to be used as or replacing clinical or medical assessment, diagnosis, or treatment.
+			The risk calculator variables and cut-offs are based on expert opinion according to the 2015 ESC/ERS pulmonary hypertension guidelines <small>[1]</small>, which have been validated in a series of studies <small>[2-6]</small>. The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intended to be used as or replacing clinical or medical assessment, diagnosis, or treatment.
+		</li>
+		<li>
+			The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intented to be used as or to replace clinical or medical assessment, diagnosis or treatment. 
 		</li>
 		<li>
 			 The user take full responsibility, including but not limited to decision making, for all data input and calculated scores.
@@ -129,16 +138,17 @@
 			The developers are not liable for any errors or inaccuracies in the algorithms or other content within or related to the calculation tool. 
 		</li>
 		<li>
-			The final decision making has to be made on balanced clinical judgement by the user in relation to the full clinical presentation. The risk calculator serves only as a supporting tool to calculate risk scores.
+			The final decision making has to be made on balanced clinical judgement by the user in relation to the clinical presentation. The risk calculator serves only as a supporting tool to calculate risk scores.
 		</li>
 		<li>
-			The risk score calculator is continusly updated according to available data and is to be updated after the upcoming ESC/ERS guidelines in 2022.
+			The risk score calculator will be updated after the upcoming ESC/ERS guidelines in 2022.
 		</li>		
 	</ul>
+	*<small>Note that if both NT-proBNP and BNP are selected, only NT-proBNP will be included in the calculated risk score.</small>
 	</div>
 
 	<!-- Collapsible enviroment with article references -->
-	<button class="collapsible"  onclick="collapseContent(this)">References</button>
+	<button class="collapsible"  onclick="collapseContent(this)">Click to see References</button>
 	<div id="ref" class="collapsible-content">
 	<ol>
 		<li>Galiè N, Humbert M, Vachiery J-L, Gibbs S, Lang I, Torbicki A, Simonneau G, Peacock A, Vonk Noordegraaf A, Beghetti M, Ghofrani A, Gomez Sanchez MA, Hansmann G, Klepetko W, Lancellotti P, Matucci M, McDonagh T, Pierard LA, Trindade PT, Zompatori M, Hoeper M. 2015 ESC/ERS Guidelines for the diagnosis and treatment of pulmonary hypertension. European Respiratory Journal 2015: 46(4): 903.</li>

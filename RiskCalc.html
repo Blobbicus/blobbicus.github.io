@@ -27,7 +27,7 @@
 
 	<button class="reset-btn" onclick="resetCalc()">Reset</button>
 
-	<button class="reset-btn" onclick="goTo4()">4 Strata</button>
+	<button class="reset-btn" onclick="goTo4()">View 4-strata model</button>
 </section>
 
 
@@ -163,11 +163,15 @@
 	</table>
 
 	<!-- Collapsible enviroment with extra information -->
-	<button class="collapsible"  onclick="collapseContent(this)">Additional information</button>
+	<button class="collapsible"  onclick="collapseContent(this)">Click to see Additional Information</button>
 	<div id="info" class="collapsible-content">
+	<p style="font-weight: bold;">By using the PAH risk calculator, the user agrees to and consent to be bound to the terms of use, as follows:</p>
 	<ul>
 		<li>
-			The risk calculator variables and cut-offs are based on expert opinion according to the 2015 ESC/ERS pulmonary hypertension guidelines <small>[1]</small> which have been validated <small>[2-6]</small>. The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intended to be used as or replacing clinical or medical assessment, diagnosis, or treatment.
+			The risk calculator variables and cut-offs are based on expert opinion according to the 2015 ESC/ERS pulmonary hypertension guidelines <small>[1]</small>, which have been validated in a series of studies <small>[2-6]</small>. The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intended to be used as or replacing clinical or medical assessment, diagnosis, or treatment.
+		</li>
+		<li>
+			The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intented to be used as or to replace clinical or medical assessment, diagnosis or treatment. 
 		</li>
 		<li>
 			 The user take full responsibility, including but not limited to decision making, for all data input and calculated scores.
@@ -176,16 +180,17 @@
 			The developers are not liable for any errors or inaccuracies in the algorithms or other content within or related to the calculation tool. 
 		</li>
 		<li>
-			The final decision making has to be made on balanced clinical judgement by the user in relation to the full clinical presentation. The risk calculator serves only as a supporting tool to calculate risk scores.
+			The final decision making has to be made on balanced clinical judgement by the user in relation to the clinical presentation. The risk calculator serves only as a supporting tool to calculate risk scores.
 		</li>
 		<li>
-			The risk score calculator is continusly updated according to available data and is to be updated after the upcoming ESC/ERS guidelines in 2022.
+			The risk score calculator will be updated after the upcoming ESC/ERS guidelines in 2022.
 		</li>		
 	</ul>
+	*<small>Note that if both NT-proBNP and BNP are selected, only NT-proBNP will be included in the calculated risk score.</small>
 	</div>
 
 	<!-- Collapsible enviroment with article references -->
-	<button class="collapsible"  onclick="collapseContent(this)">References</button>
+	<button class="collapsible"  onclick="collapseContent(this)">Click to see References</button>
 	<div id="ref" class="collapsible-content">
 	<ol>
 		<li>Galiè N, Humbert M, Vachiery J-L, Gibbs S, Lang I, Torbicki A, Simonneau G, Peacock A, Vonk Noordegraaf A, Beghetti M, Ghofrani A, Gomez Sanchez MA, Hansmann G, Klepetko W, Lancellotti P, Matucci M, McDonagh T, Pierard LA, Trindade PT, Zompatori M, Hoeper M. 2015 ESC/ERS Guidelines for the diagnosis and treatment of pulmonary hypertension. European Respiratory Journal 2015: 46(4): 903.</li>
