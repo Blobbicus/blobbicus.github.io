@@ -46,7 +46,7 @@
 	<tbody class="solid-border">
 	<tr class="title-row">
 		<th colspan="6">
-		Pulmonary Arterial Hypertension Risk Score Calculator - 4 Strata
+		Pulmonary Arterial Hypertension Risk Score Calculator - 4 Strata Model
 		<!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
 		  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 		  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -56,10 +56,10 @@
 		<small>Select the available risk category for each parameter</small>
 		</th>
 	</tr>
-	<tr class="title-row">
+	<!--<tr class="title-row">
 		<th colspan="3" onclick="goTo3()" style="border-top: none;">3 Strata Model</th>
 		<th colspan="3" onclick="goTo4()" style="background: var(--highlight-blue);border-top: none;">4 Strata Model</th>
-	</tr>
+	</tr>-->
 	</tbody>
 
 	<tbody class="solid-border">
@@ -78,8 +78,8 @@
 		<th class="header-cell" rowspan="2" style="width:160px;background-color: var(--high-red);">High risk (>20%)</th>
 	</tr>
 	<tr class="header-row">
-		<th class="header-cell" style="width:160px;background: linear-gradient(to right, var(--mid-yellow), var(--mid-yellow-orange));;">Low-Intermediate</th>
-		<th class="header-cell" style="width:160px;background: linear-gradient(to right, var(--mid-yellow-orange), var(--mid-orange));;">High-Intermediate</th>
+		<th class="header-cell" style="width:160px;background: linear-gradient(to right, var(--mid-yellow), var(--mid-yellow-orange));;">Intermediate-Low</th>
+		<th class="header-cell" style="width:160px;background: linear-gradient(to right, var(--mid-yellow-orange), var(--mid-orange));;">Intermediate-High</th>
 	</tr>
 		</tbody>
 
@@ -92,7 +92,7 @@
 	<!-- Start of result section -->
 	<tr class="title-row">
 		<th colspan="6">
-			Calculated ESC/ERS Risk Scores <sub>1-6</sub>
+			Calculated ESC/ERS Risk Scores <sup>1-6</sup>
 		</th>
 	</tr>
 
@@ -125,7 +125,7 @@
 	</table>
 
 	<!-- Collapsible enviroment with extra information -->
-	<button class="collapsible"  onclick="collapseContent(this)">Click to see Additional Information</button>
+	<button class="collapsible"  onclick="collapseContent(this)">Click to show Additional Information</button>
 	<div id="info" class="collapsible-content">
 	<p style="font-weight: bold;">By using the PAH risk calculator, the user agrees to and consent to be bound to the terms of use, as follows:</p>
 	<ul>
@@ -133,7 +133,7 @@
 			The risk calculator variables and cut-offs are based on expert opinion according to the 2015 ESC/ERS pulmonary hypertension guidelines <small>[1]</small>, which have been validated in a series of studies <small>[2-6]</small>. The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intended to be used as or replacing clinical or medical assessment, diagnosis, or treatment.
 		</li>
 		<li>
-			The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intented to be used as or to replace clinical or medical assessment, diagnosis or treatment. 
+			The risk calculator assists in the calculation of risk scores. No proportion of the risk calculator is intented to be used as or to replace clinical or medical assessment, diagnosis or treatment. N indicates the number of parameters used in the risk calculation.
 		</li>
 		<li>
 			 The user take full responsibility, including but not limited to decision making, for all data input and calculated scores.
@@ -149,10 +149,12 @@
 		</li>		
 	</ul>
 	*<small>Note that if both NT-proBNP and BNP are selected, only NT-proBNP will be included in the calculated risk score.</small>
+	<br>
+	¤<small>Indicates the parameters used in the SPAHR-Kylhammar equation. In COMPERA, RA area and pericardial effusion are not included.</small>
 	</div>
 
 	<!-- Collapsible enviroment with article references -->
-	<button class="collapsible"  onclick="collapseContent(this)">Click to see References</button>
+	<button class="collapsible"  onclick="collapseContent(this)">Click to show References</button>
 	<div id="ref" class="collapsible-content">
 	<ol>
 		<li>Galiè N, Humbert M, Vachiery J-L, Gibbs S, Lang I, Torbicki A, Simonneau G, Peacock A, Vonk Noordegraaf A, Beghetti M, Ghofrani A, Gomez Sanchez MA, Hansmann G, Klepetko W, Lancellotti P, Matucci M, McDonagh T, Pierard LA, Trindade PT, Zompatori M, Hoeper M. 2015 ESC/ERS Guidelines for the diagnosis and treatment of pulmonary hypertension. European Respiratory Journal 2015: 46(4): 903.</li>

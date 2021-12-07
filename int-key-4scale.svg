@@ -91,8 +91,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284271"
-     inkscape:cx="433.19334"
-     inkscape:cy="170.07935"
+     inkscape:cx="371.3215"
+     inkscape:cy="113.51081"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -447,7 +447,7 @@
          id="tspan7230"
          x="74.065331"
          y="285.99695"
-         style="stroke-width:0.26414204">Low-interm.</tspan></text>
+         style="stroke-width:0.26414204">Interm.-Low</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.63503027px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26414204"
@@ -459,7 +459,7 @@
          id="tspan7228"
          x="112.98776"
          y="285.97495"
-         style="stroke-width:0.26414204">High-interm.</tspan></text>
+         style="stroke-width:0.26414204">Interm.-High</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot924"
@@ -522,6 +522,6 @@
          id="tspan1511"
          x="6.614583"
          y="238.72064"
-         style="stroke-width:0.26458332"></tspan></text>
+         style="stroke-width:0.26458332" /></text>
   </g>
 </svg>

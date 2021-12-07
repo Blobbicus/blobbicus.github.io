@@ -26,10 +26,10 @@ params.push(Sympt_Prog);
 const Syncope = {name:"Syncope", group:"Sympt", meta_group:"Clinical", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Syncope", btnText:["No","Occasionally","Repeated syncope"]};
 params.push(Syncope);
 // WHO-FC
-const WHO_FC = {name:"WHO_FC", group:"WHO_walk", meta_group:"Modifiable", weight:[1,1,1,2], weight_f:[1,1], value:[1,2,3], title:"WHO functional class <sup>¤</sup>", btnText:["I, II","III","IV"]};
+const WHO_FC = {name:"WHO_FC", group:"WHO_walk", meta_group:"Modifiable", weight:[1,1,1,2], weight_f:[1,1], value:[1,2,3], title:"WHO functional class <sup>¤ #</sup>", btnText:["I, II","III","IV"]};
 params.push(WHO_FC);
 // 6MWT
-const MWT = {name:"MWT", group:"WHO_walk", meta_group:"Modifiable", weight:[1,1,1,1], weight_f:[1,1], value:[1,2,3], title:"Six-minute walking distance <sup>¤</sup>", btnText:["> 440 m","165 - 440 m","< 165 m"]};
+const MWT = {name:"MWT", group:"WHO_walk", meta_group:"Modifiable", weight:[1,1,1,1], weight_f:[1,1], value:[1,2,3], title:"Six-minute walking distance <sup>¤ #</sup>", btnText:["> 440 m","165 - 440 m","< 165 m"]};
 params.push(MWT);
 // Peak VO_2
 const Peak_VO2 = {name:"Peak_VO2", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], title:"Peak VO2", btnText:["Peak VO<sub>2</sub>&nbsp;> 15 ml/min/kg","Peak VO<sub>2</sub>&nbsp;11 - 15 ml/min/kg","Peak VO<sub>2</sub>&nbsp;< 11 ml/min/kg"]};
@@ -62,8 +62,8 @@ params.push(CI);
 const SvO2 = {name:"SvO2", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,1,1,0], weight_f:[0,0], value:[1,2,3], title:"SvO2", btnText:["SvO<sub>2</sub>&nbsp;> 65%","SvO<sub>2</sub>&nbsp;60% - 65%","SvO<sub>2</sub>&nbsp;< 60%"]};
 params.push(SvO2);
 // Set group titles
-const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise testing", Biochem:"Biochemical markers <sup>¤*</sup>", 
-			Imaging:"Imaging <sup>¤</sup> <small>(echocardiography, cardiac magnetic resonance)</small>", Haemodynamics:"Haemodynamics <sup>¤</sup>"};
+const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise testing", Biochem:"Biochemical markers <sup>¤ # *</sup>", 
+			Imaging:"Imaging <sup>¤</sup> <small>(echocardiography, cardiac magnetic resonance)</small>", Haemodynamics:"Haemodynamics <sup>¤ #</sup>"};
 const metaGroupTitle = {Clinical:"Clinical Observations", Modifiable:"Modifiable Parameters"};
 
 // Number of params in array
@@ -124,7 +124,7 @@ function updateRisk() {
 		//Set param count for each risk
 		document.getElementById(riskID[i]+"_count").innerHTML = `${paramCount[i]}/${paramTotal[i]}`;
 		if (riskValue[i] && paramCount[i] >= paramMin ) {
-			const riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Low-intermediate)</small>","&nbsp;<small>(High-intermediate)</small>", "&nbsp;<small>(High)</small>"];
+			const riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Intermediate-Low)</small>","&nbsp;<small>(Intermediate-High)</small>", "&nbsp;<small>(High)</small>"];
 			//const riskRate = [" (Low risk)", " (Low-intermediate risk)"," (High-intermediate risk)", " (High risk)"];
 			if ( riskValue[i] < 1.5 ) {
 			// If riskValue rounds to 1
@@ -156,7 +156,7 @@ function updateRisk_f() {
 	let sum = new Array(numOfRisks_f).fill(0);
 	let paramCount = new Array(numOfRisks_f).fill(0); // Count the number of used params
 	let paramTotal  = new Array(numOfRisks_f).fill(0); // Total available of params
-	const paramMin = 3; // The minimum number of params for which a value is displayed.
+	const paramMin = [4, 3]; // The minimum number of params for which a value is displayed.
 	
 	// Add up the sum and weights of all params for each risk
 	for (let i = 0; i < numOfRisks_f; i++) {
@@ -193,7 +193,7 @@ function updateRisk_f() {
 	//Set param count for each risk
 	document.getElementById(riskID_f[0]+"_count").innerHTML = `${paramCount[0]}/${paramTotal[0]}`;
 	//var riskRate = [" (Low risk)", " (Intermediate risk)", " (High risk)"];
-	if ( paramCount[0] >= paramMin ) {
+	if ( paramCount[0] >= paramMin[0] ) {
 		if ( riskValue_f[0] >= 3 ) {
 			// If 3-4 low risk parameters
 			document.getElementById(riskID_f[0]).style.backgroundColor = "var(--low-green)";
@@ -208,7 +208,7 @@ function updateRisk_f() {
 			document.getElementById(riskID_f[0]).innerHTML = sum[0] + riskRate[2];			
 		}
 	}  else { // Do if too few parameters were used.
-		document.getElementById(riskID_f[0]).innerHTML = `Use &geq; ${paramMin} parameters`;
+		document.getElementById(riskID_f[0]).innerHTML = `Use ${paramMin[0]} parameters`;
 		document.getElementById(riskID_f[0]).style.backgroundColor = "white";
 	}
 	// French non-invasive
@@ -216,7 +216,7 @@ function updateRisk_f() {
 	//Set param count for each risk
 	document.getElementById(riskID_f[1]+"_count").innerHTML = `${paramCount[1]}/${paramTotal[1]}`;
 	//var riskRate = [" (Low risk)", " (N/A)", " (High risk)"];
-	if ( paramCount[1] >= paramMin ) {
+	if ( paramCount[1] >= paramMin[1] ) {
 		if ( riskValue_f[1] >= 3 ) {
 			// If 3-4 low risk parameters
 			document.getElementById(riskID_f[1]).style.backgroundColor = "var(--low-green)";
@@ -231,7 +231,7 @@ function updateRisk_f() {
 			document.getElementById(riskID_f[1]).innerHTML = sum[1] + riskRate[2];			
 		} 
 	} else { // Do if too few parameters were used.
-		document.getElementById(riskID_f[1]).innerHTML = `Use &geq; ${paramMin} parameters`;
+		document.getElementById(riskID_f[1]).innerHTML = `Use ${paramMin[1]} parameters`;
 		document.getElementById(riskID_f[1]).style.backgroundColor = "white";
 	}
 }
@@ -348,7 +348,7 @@ function copyData() {
 	for( let i = 0; i<numOfParams; i++ ) {
 		copyStr += `\n${params[i].title}\t${params[i].btnText[testValue[i]-1]}\t${testValue[i]}`;
 	}
-	var riskGroup = ["Low risk", "Low-Intermediate risk", "High-Intermediate risk", "High risk"];
+	var riskGroup = ["Low risk", "Intermediate-Low risk", "Intermediate-High risk", "High risk"];
 	var risk_group;
 	copyStr += "\nRisk Group";
 	for ( let i = 0; i<riskID.length; i++) {
