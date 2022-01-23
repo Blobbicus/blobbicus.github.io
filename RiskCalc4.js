@@ -125,7 +125,7 @@ function updateRisk() {
 		//Set param count for each risk
 		document.getElementById(riskID[i]+"_count").innerHTML = `${paramCount[i]}/${paramTotal[i]}`;
 		if (riskValue[i] && paramCount[i] >= paramMin ) {
-			const riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Intermediate-Low)</small>","&nbsp;<small>(Intermediate-High)</small>", "&nbsp;<small>(High)</small>"];
+			const riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Intermediate-Low)</small>","&nbsp;<small>(Intermediate- High)</small>", "&nbsp;<small>(High)</small>"];
 			//const riskRate = [" (Low risk)", " (Low-intermediate risk)"," (High-intermediate risk)", " (High risk)"];
 			if ( riskValue[i] < 1.5 ) {
 			// If riskValue rounds to 1
@@ -513,7 +513,7 @@ function createTable_m() {
 	let groups = ["misc"];
 	let groupCount = {misc:0};
 	var group_id;
-	const max_btns = 3;
+	const max_btns = 4;
 	for(let i=0; i < numOfParams; i++) {
 		if (group_id = params[i].group) {	
 			if ( groupCount[group_id] ) {
@@ -541,7 +541,7 @@ function createTable_m() {
 				var title_row = document.createElement("TR");
 				title_row.setAttribute("class","btn-row");
 				var title_cell = createTitleCell(groupTitle[group_id]);
-				title_cell.setAttribute("colspan","3");
+				title_cell.setAttribute("colspan",max_btns);
 				title_row.appendChild(title_cell);
 			}
 		} else {
@@ -555,7 +555,7 @@ function createTable_m() {
 				var title_row = document.createElement("TR");
 				title_row.setAttribute("class","btn-row");
 				var title_cell = createTitleCell(param.title);
-				title_cell.setAttribute("colspan","3");
+				title_cell.setAttribute("colspan",max_btns);
 				title_row.appendChild(title_cell);
 		}
 		

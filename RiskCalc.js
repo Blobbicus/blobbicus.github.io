@@ -122,7 +122,9 @@ function updateRisk() {
 
 	for (let i=0; i<numOfRisks; i++) {
 		//Set param count for each risk
-		document.getElementById(riskID[i]+"_count").innerHTML = `${paramCount[i]}/${paramTotal[i]}`;
+		if (document.getElementById(riskID[i]+"_count")) {
+			document.getElementById(riskID[i]+"_count").innerHTML = `${paramCount[i]}/${paramTotal[i]}`;
+		} 
 		if (riskValue[i] && paramCount[i] >= paramMin ) {
 			const riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Intermediate-Low)</small>","&nbsp;<small>(Intermediate-High)</small>", "&nbsp;<small>(High)</small>"];
 			//const riskRate = [" (Low risk)", " (Low-intermediate risk)"," (High-intermediate risk)", " (High risk)"];
@@ -191,7 +193,9 @@ function updateRisk_f() {
 	// French invasive
 	var riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Intermediate)</small>", "&nbsp;<small>(High)</small>"];
 	//Set param count for each risk
-	document.getElementById(riskID_f[0]+"_count").innerHTML = `${paramCount[0]}/${paramTotal[0]}`;
+	if (document.getElementById(riskID_f[0]+"_count")) {
+		document.getElementById(riskID_f[0]+"_count").innerHTML = `${paramCount[0]}/${paramTotal[0]}`;
+	}
 	//var riskRate = [" (Low risk)", " (Intermediate risk)", " (High risk)"];
 	if ( paramCount[0] >= paramMin[0] ) {
 		if ( riskValue_f[0] >= 3 ) {
@@ -214,7 +218,9 @@ function updateRisk_f() {
 	// French non-invasive
 	riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(N/A)</small>", "&nbsp;<small>(High)</small>"];
 	//Set param count for each risk
-	document.getElementById(riskID_f[1]+"_count").innerHTML = `${paramCount[1]}/${paramTotal[1]}`;
+	if (document.getElementById(riskID_f[1]+"_count")) {
+		document.getElementById(riskID_f[1]+"_count").innerHTML = `${paramCount[1]}/${paramTotal[1]}`;
+	}
 	//var riskRate = [" (Low risk)", " (N/A)", " (High risk)"];
 	if ( paramCount[1] >= paramMin[1] ) {
 		if ( riskValue_f[1] >= 3 ) {

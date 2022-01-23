@@ -11,12 +11,27 @@
 </head>
 
 <script type="text/javascript">
-if (screen.width <= 700) {
+ function go3Strata() {
+ 	if (screen.width <= 700) {
 	document.location = "RiskCalc_m.html";
-} else {
+	} else {
 	document.location = "RiskCalc.html";
-}
+	}
+ }
+
+ function go4Strata() {
+ 	if (screen.width <= 700) {
+	document.location = "RiskCalc4_m.html";
+	} else {
+	document.location = "RiskCalc4.html";
+	}
+ }
+
 </script>
 
-<body>
+<body style="display: flex;justify-content: center;align-items: center; padding-top: 50px;">
+
+<button style="margin-top: 20px;margin: 5px;" class="reset-btn" onclick="go3Strata()">3 Strata</button>
+<button style="margin-top: 20px;margin: 5px;" class="reset-btn" onclick="go4Strata()">4 Strata</button>
+
 </body>
