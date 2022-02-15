@@ -333,12 +333,21 @@ function copyData() {
 	navigator.clipboard.writeText(copyStr);
 }
 
-function goTo3() {
+ function goTo3() {
+ 	if (screen.width <= 700) {
+	document.location = "RiskCalc_m.html";
+	} else {
 	document.location = "RiskCalc.html";
-}
-function goTo4() {
+	}
+ }
+
+ function goTo4() {
+ 	if (screen.width <= 700) {
+	document.location = "RiskCalc4_m.html";
+	} else {
 	document.location = "RiskCalc4.html";
-}
+	}
+ }
 
 function createButton(name, value, btn_text) {
 	// Creates cell for button
