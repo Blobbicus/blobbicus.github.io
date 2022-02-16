@@ -107,6 +107,10 @@ tr {
   font-weight: bold;
 }
 .btn-cell input[value="3"]:checked ~ .checkmark {
+  background-color: var(--mid-orange);
+  font-weight: bold;
+}
+.btn-cell input[value="4"]:checked ~ .checkmark {
   background-color: var(--high-red);
   font-weight: bold;
 }
@@ -138,7 +142,7 @@ tr {
 .reset-btn {
   height: 40px;
   width: 30%;
-  font-size: 14px;
+  font-size: 18px;
   color: white;
   background-color: var(--background-blue);
   margin: 5px;

@@ -6,7 +6,7 @@
 	<meta charset='UTF-8'/>
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="RiskCalc_m.css">
+	<link rel="stylesheet" type="text/css" href="RiskCalc4_m.css">
 	<link rel="stylesheet" media="print" href="RiskCalc_print.css">
  	<script type="text/javascript" src="RiskCalc4.js"></script>
 </head>
@@ -113,8 +113,7 @@
 	<tr class="result-row">
 		<td class="result-cell" id="result_Compera_count">0/3</td>
 		<td class="title-cell" colspan="2" onmouseenter="highlightParam('result_Compera')" onmouseout="highlightParam()">
-			COMPERA 2 <!--<small> (up to 6 parameters, without RA area and pericardial effusion) </small>-->
-				
+			COMPERA 2.0 <small> (each variable is graded from 1-4 corresponding to low risk - high risk, respectively. <br>The mean is rounded to the nearest integer) </small>				
 		</td>
 		<td class="result-cell" id="result_Compera">Use &geq; 3 parameters</td>
 	</tr>
@@ -146,8 +145,6 @@
 		</li>		
 	</ul>
 	*<small>Note that if both NT-proBNP and BNP are selected, only NT-proBNP will be included in the calculated risk score.</small>
-	<br>
-	¤<small>Indicates the parameters used in the SPAHR-Kylhammar equation. In COMPERA, RA area and pericardial effusion are not included.</small>
 	</div>
 
 	<!-- Collapsible enviroment with article references -->
@@ -164,78 +161,6 @@
 		<li></li>
 	</ol>
 	</div>
-
-	<!-- Start of collapisble enviroment 
-	<button class="collapsible" onclick="collapseContent(this)">Collapse</button>
-	<div class="collapsible_content">
-	<div class="buttonSet">
-		<h3 class="col-xs-6">NAME</h3>
-	<div class="buttonRow">
-		<label id="PH_NAME_1" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="1" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 1</span>
-		</label>
-		<label id="PH_NAME_2" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="2" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 2</span>
-		</label>
-		<label id="PH_NAME_3" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="3" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 3</span>
-		</label>
-	</div>
-	</div>
-	</div>
-	End of collapsible enviroment -->
-
-<!-- 	
-	<div class="buttonSet">
-		<h3 class="col-xs-6">Place holder NAME</h3>
-	<div class="buttonRow">
-		<label id="PH_NAME_1" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="1" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 1</span>
-		</label>
-		<label id="PH_NAME_2" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="2" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 2</span>
-		</label>
-		<label id="PH_NAME_3" class="radioButton col-xs-2">
-		<input type="radio" name="PH_NAME" value="3" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">Button 3</span>
-		</label>
-	</div>
-	</div> -->
-
-<!--
-	<tr class="btn-row">
-		<td class="title-cell">
-		PH NAME
-		</td>
-
-		<td class="btn-cell">
-		<label id="PH_NAME_1" class="radioButton">
-		<input type="radio" name="RV_Fail" value="1" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">-</span>
-		</label>
-		</td>
-
-		<td class="btn-cell">
-		<label id="PH_NAME_2" class="radioButton">
-		<input type="radio" name="PH_NAME" value="2" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">--</span>
-		</label>
-		</td>
-
-		<td class="btn-cell">
-		<label id="PH_NAME_3" class="radioButton">
-		<input type="radio" name="PH_NAME" value="3" onclick="inputButton(this.name, this.value)">
-		<span class="checkmark">---</span>
-		</label>
-		</td>
-	</tr>
--->
-
 
 </section>
 

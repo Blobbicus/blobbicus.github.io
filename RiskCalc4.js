@@ -13,25 +13,32 @@ let riskValue_f = new Array(numOfRisks_f).fill(0);
 // Array of all parameters
 let params = [];
 // Create params with buttons and add to array of params
-/*
-const PH_NAME = {name:"PH_NAME", weight:[0,0,0], value:[1,2,3], title:"", btnText:["BTN1","BTN2","BTN3"]};
-params.push(PH_NAME);
-*/
-
-const WHO_FC = {name:"WHO_FC", group:"WHO_walk", meta_group:"Modifiable", weight:[1], weight_f:[], value:[1,0,3,4], title:"WHO functional class", btnText:["I, II","-","III","IV"]};
+const WHO_FC = {name:"WHO_FC", group:"WHO_walk", meta_group:"Modifiable", weight:[1], weight_f:[1,1], value:[1,0,3,4], 
+title:"WHO functional class", btnText:["I, II","-","III","IV"],
+title_c:"", btnText_c:[],
+title_p:"", btnText_p:[]};
 params.push(WHO_FC);
 // 6MWT
-const MWT = {name:"MWT", group:"WHO_walk", meta_group:"Modifiable", weight:[1], weight_f:[], value:[1,2,3,4], title:"Six-minute walking distance", btnText:["> 440 m","320 - 440 m","319 - 165 m","< 165 m"]};
+const MWT = {name:"MWT", group:"WHO_walk", meta_group:"Modifiable", weight:[1], weight_f:[1,1], value:[1,2,3,4], 
+title:"Six-minute walking distance", btnText:["> 440 m","320 - 440 m","319 - 165 m","< 165 m"],
+title_c:"", btnText_c:[],
+title_p:"", btnText_p:[]};
 params.push(MWT);
-
-const proBNP = {name:"proBNP", group:"Biochem", meta_group:"Modifiable", weight:[1], weight_f:[], value:[1,2,3,4], title:"NT-proBNP", btnText:["NT-proBNP < 300 ng/l","NT-proBNP 300 - 649 ng/l","NT-proBNP 650 - 1100 ng/l","NT-proBNP > 1100 ng/l"]};
+// ProBNP
+const proBNP = {name:"proBNP", group:"Biochem", meta_group:"Modifiable", weight:[1], weight_f:[0,1], value:[1,2,3,4], 
+title:"NT-proBNP", btnText:["NT-proBNP < 300 ng/l","NT-proBNP 300 - 649 ng/l","NT-proBNP 650 - 1100 ng/l","NT-proBNP > 1100 ng/l"],
+title_c:"", btnText_c:[],
+title_p:"", btnText_p:[]};
 params.push(proBNP);
-//
-const BNP = {name:"BNP", group:"Biochem", meta_group:"Modifiable", weight:[1], weight_f:[], value:[1,2,3,4], title:"BNP", btnText:["BNP < 50 ng/l","BNP 50 - 199 ng/l","BNP 200 - 800 ng/l","BNP > 800 ng/l"]};
+// BNP
+const BNP = {name:"BNP", group:"Biochem", meta_group:"Modifiable", weight:[1], weight_f:[0,1], value:[1,2,3,4], 
+title:"BNP", btnText:["BNP < 50 ng/l","BNP 50 - 199 ng/l","BNP 200 - 800 ng/l","BNP > 800 ng/l"],
+title_c:"", btnText_c:[],
+title_p:"", btnText_p:[]};
 params.push(BNP);
-
+//
 // Set group titles
-const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise testing", Biochem:"Biochemical markers", 
+const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise testing", Biochem:"Biochemical markers <sup>*</sup>", 
 			Imaging:"Imaging", Haemodynamics:"Haemodynamics"};
 const metaGroupTitle = {Clinical:"Clinical Observations", Modifiable:"Modifiable Parameters"};
 
@@ -51,8 +58,8 @@ function updateRisk() {
 	let w = new Array(numOfRisks).fill(0);
 	let paramCount = new Array(numOfRisks).fill(0); // Count the number of used params
 	let paramTotal = new Array(numOfRisks).fill(0); // Count total available params
-	const paramMin = 2; // The minimum number of params for which a value is displayed.
-	
+	const paramMin = 3; // The minimum number of params for which a value is displayed.
+
 	// Add up the sum and weights of all params for each risk
 	for (let i = 0; i < numOfRisks; i++) {
 		for (let j = 0; j < numOfParams; j++) {
@@ -107,13 +114,13 @@ function updateRisk() {
 			// If riskValue rounds to 2
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-orange)";
 				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[2];			
-			} else if ( riskValue[i] <= 3.5 ) {
+			} else if ( riskValue[i] >= 3.5 ) {
 			// If riskValue rounds to 3
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--high-red)";
 				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[3];		
 			}
 		} else { // Do if too few parameters were used.
-			document.getElementById(riskID[i]).innerHTML = `Use &geq; ${paramMin} parameters`;
+			document.getElementById(riskID[i]).innerHTML = `Use ${paramMin} parameters`;
 			document.getElementById(riskID[i]).style.backgroundColor = "white";
 		}
 		
@@ -214,10 +221,8 @@ function inputButton(name, val) {
 				var radio = document.querySelector(`input[type=radio][name=${name}]:checked`);
 				radio.checked = false;
 				testValue[i] = 0;
-				console.log(`Updated test ${name} value to ${testValue[i]}!`)
 			} else {
 				testValue[i] = val;
-				console.log(`Updated test ${name} value to ${testValue[i]}!`)
 			}
 		}
 	}
@@ -289,13 +294,10 @@ function collapseContent(btn) {
 		content.style.display = "none";
 	}
 	*/
-	//console.log(content.style.maxHeight);
 	if (content.style.maxHeight) {
 		content.style.maxHeight = null;
-		//console.log("Closed collapsible!");
 	} else {
 		content.style.maxHeight = content.scrollHeight + "px";
-		//console.log(`Opened collapsible! ${content.scrollHeight}`);
 	}
 }
 
@@ -314,10 +316,30 @@ function resetCalc() {
 
 function copyData() {
 	let copyStr = "";// = `Parameter\tDiagnosis\tValue`;
+	let paramTitle; let paramText; let testVal;
 	for( let i = 0; i<numOfParams; i++ ) {
-		copyStr += `\n${params[i].title}\t${params[i].btnText[testValue[i]-1]}\t${testValue[i]}`;
+		testVal = testValue[i];
+		if (params[i].title_c) {
+			paramTitle = params[i].title_c;
+		} else {
+			paramTitle = params[i].title;
+		}
+		if (params[i].btnText[testValue[i]-1]) {
+			paramText = params[i].btnText_c[testValue[i]-1];
+		} else {
+			paramText = params[i].btnText[testValue[i]-1];
+		}
+		// BNP exeption
+		if (params[i].title = "BNP") {
+			if (testValue[i-1]) {
+				testVal = 0;
+				paramText = "undefined"
+			}
+		}
+
+		copyStr += `\n${paramTitle}\t${paramText}\t${testVal}`;
 	}
-	var riskGroup = ["Low risk", "Low-Intermediate risk", "High-Intermediate risk", "High risk"];
+	var riskGroup = ["Low risk", "Intermediate-Low risk", "Intermediate-High risk", "High risk"];
 	var risk_group;
 	copyStr += "\nRisk Group";
 	for ( let i = 0; i<riskID.length; i++) {
@@ -373,7 +395,6 @@ function createButton(name, value, btn_text) {
 	// Add btn and span to label node
 	cell.appendChild(label);
 	
-	console.log(`created btn ${name} with cal ${value}`);
 	return cell;
 }
 
@@ -416,7 +437,6 @@ function createTable() {
 			// Add counter to misc meta-group if meta-group tag is missing.
 			metaGroupCount["misc"] += 1;
 		}
-		console.log(`Meta-group ${meta_id} count ${metaGroupCount[meta_id]}`)
 		// Count title groups.
 		if (group_id = params[i].group) {	
 			if ( groupCount[group_id] ) {
