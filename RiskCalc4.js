@@ -349,12 +349,12 @@ function copyData() {
 		risk_group = riskGroup[Math.round(4*riskValue[i]/3)-1];
 		copyStr += `\n${riskTitle[i]}\t${risk_group}\t${riskValue[i].toFixed(2)}`;
 	}
-	riskGroup = ["Low risk", "Low risk", "High risk"];
-	copyStr += "\nFrench Risk Strategy";
-	for ( let i = 0; i<riskID_f.length; i++) {
-		risk_group = riskGroup[Math.round(riskValue_f[i])];
-		copyStr += `\n${riskTitle_f[i]}\t${risk_group}\t${riskValue_f[i]}`;
-	}
+	//riskGroup = ["Low risk", "Low risk", "High risk"];
+	//copyStr += "\nFrench Risk Strategy";
+	//for ( let i = 0; i<riskID_f.length; i++) {
+	//	risk_group = riskGroup[Math.round(riskValue_f[i])];
+	//	copyStr += `\n${riskTitle_f[i]}\t${risk_group}\t${riskValue_f[i]}`;
+	//}
 	navigator.clipboard.writeText(copyStr);
 }
 
