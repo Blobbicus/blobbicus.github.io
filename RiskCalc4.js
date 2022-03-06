@@ -105,19 +105,19 @@ function updateRisk() {
 			if ( riskValue[i] < 1.5 ) {
 			// If riskValue rounds to 1
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--low-green)";
-				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[0];		
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[0];		
 			} else if ( riskValue[i] < 2.5 ) {
 			// If riskValue rounds to 2
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-yellow)";
-				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[1];			
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[1];			
 			} else if ( riskValue[i] < 3.5 ) {
 			// If riskValue rounds to 2
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-orange)";
-				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[2];			
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[2];			
 			} else if ( riskValue[i] >= 3.5 ) {
 			// If riskValue rounds to 3
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--high-red)";
-				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[3];		
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[3];		
 			}
 		} else { // Do if too few parameters were used.
 			document.getElementById(riskID[i]).innerHTML = `Use ${paramMin} parameters`;
@@ -324,16 +324,19 @@ function copyData() {
 		} else {
 			paramTitle = params[i].title;
 		}
-		if (params[i].btnText[testValue[i]-1]) {
+		if (params[i].btnText_c[testValue[i]-1]) {
 			paramText = params[i].btnText_c[testValue[i]-1];
 		} else {
 			paramText = params[i].btnText[testValue[i]-1];
 		}
+		if ( testVal == 0 ) {
+			paramText = " ";
+		} 
 		// BNP exeption
-		if (params[i].title = "BNP") {
+		if (params[i].title == "BNP") {
 			if (testValue[i-1]) {
 				testVal = 0;
-				paramText = "undefined"
+				paramText = " ";
 			}
 		}
 
@@ -354,6 +357,7 @@ function copyData() {
 	}
 	navigator.clipboard.writeText(copyStr);
 }
+
 
  function goTo3() {
  	if (screen.width <= 700) {

@@ -407,16 +407,19 @@ function copyData() {
 		} else {
 			paramTitle = params[i].title;
 		}
-		if (params[i].btnText[testValue[i]-1]) {
+		if (params[i].btnText_c[testValue[i]-1]) {
 			paramText = params[i].btnText_c[testValue[i]-1];
 		} else {
 			paramText = params[i].btnText[testValue[i]-1];
 		}
+		if ( testVal == 0 ) {
+			paramText = " ";
+		} 
 		// BNP exeption
-		if (params[i].title = "BNP") {
+		if (params[i].title == "BNP") {
 			if (testValue[i-1]) {
 				testVal = 0;
-				paramText = "undefined"
+				paramText = " ";
 			}
 		}
 
