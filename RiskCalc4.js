@@ -13,32 +13,21 @@ let riskValue_f = new Array(numOfRisks_f).fill(0);
 // Array of all parameters
 let params = [];
 // Create params with buttons and add to array of params
-const WHO_FC = {name:"WHO_FC", group:"WHO_walk", meta_group:"Modifiable", weight:[1], weight_f:[1,1], value:[1,0,3,4], 
-title:"WHO functional class", btnText:["I, II","-","III","IV"],
-title_c:"", btnText_c:[],
-title_p:"", btnText_p:[]};
+/*
+const PH_NAME = {name:"PH_NAME", weight:[0,0,0], value:[1,2,3], title:"", btnText:["BTN1","BTN2","BTN3"]};
+params.push(PH_NAME);
+*/
+const WHO_FC = {name:"WHO_FC", group:"WHO_walk", meta_group:"Modifiable", weight:[1], weight_f:[], value:[1,0,3,4], title:"WHO functional class", btnText:["I, II","-","III","IV"]};
 params.push(WHO_FC);
 // 6MWT
-const MWT = {name:"MWT", group:"WHO_walk", meta_group:"Modifiable", weight:[1], weight_f:[1,1], value:[1,2,3,4], 
-title:"Six-minute walking distance", btnText:["> 440 m","320 - 440 m","319 - 165 m","< 165 m"],
-title_c:"", btnText_c:[],
-title_p:"", btnText_p:[]};
+const MWT = {name:"MWT", group:"WHO_walk", meta_group:"Modifiable", weight:[1], weight_f:[], value:[1,2,3,4], title:"Six-minute walking distance", btnText:["> 440 m","320 - 440 m","319 - 165 m","< 165 m"]};
 params.push(MWT);
-// ProBNP
-const proBNP = {name:"proBNP", group:"Biochem", meta_group:"Modifiable", weight:[1], weight_f:[0,1], value:[1,2,3,4], 
-title:"NT-proBNP", btnText:["NT-proBNP < 300 ng/l","NT-proBNP 300 - 649 ng/l","NT-proBNP 650 - 1100 ng/l","NT-proBNP > 1100 ng/l"],
-title_c:"", btnText_c:[],
-title_p:"", btnText_p:[]};
+const proBNP = {name:"proBNP", group:"Biochem", meta_group:"Modifiable", weight:[1], weight_f:[], value:[1,2,3,4], title:"NT-proBNP", btnText:["NT-proBNP < 300 ng/l","NT-proBNP 300 - 649 ng/l","NT-proBNP 650 - 1100 ng/l","NT-proBNP > 1100 ng/l"]};
 params.push(proBNP);
-// BNP
-const BNP = {name:"BNP", group:"Biochem", meta_group:"Modifiable", weight:[1], weight_f:[0,1], value:[1,2,3,4], 
-title:"BNP", btnText:["BNP < 50 ng/l","BNP 50 - 199 ng/l","BNP 200 - 800 ng/l","BNP > 800 ng/l"],
-title_c:"", btnText_c:[],
-title_p:"", btnText_p:[]};
-params.push(BNP);
 //
-// Set group titles
-const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise testing", Biochem:"Biochemical markers <sup>*</sup>", 
+const BNP = {name:"BNP", group:"Biochem", meta_group:"Modifiable", weight:[1], weight_f:[], value:[1,2,3,4], title:"BNP", btnText:["BNP < 50 ng/l","BNP 50 - 199 ng/l","BNP 200 - 800 ng/l","BNP > 800 ng/l"]};
+params.push(BNP);
+const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise testing", Biochem:"Biochemical markers", 
 			Imaging:"Imaging", Haemodynamics:"Haemodynamics"};
 const metaGroupTitle = {Clinical:"Clinical Observations", Modifiable:"Modifiable Parameters"};
 
@@ -58,8 +47,8 @@ function updateRisk() {
 	let w = new Array(numOfRisks).fill(0);
 	let paramCount = new Array(numOfRisks).fill(0); // Count the number of used params
 	let paramTotal = new Array(numOfRisks).fill(0); // Count total available params
-	const paramMin = 3; // The minimum number of params for which a value is displayed.
-
+	const paramMin = 2; // The minimum number of params for which a value is displayed.
+	
 	// Add up the sum and weights of all params for each risk
 	for (let i = 0; i < numOfRisks; i++) {
 		for (let j = 0; j < numOfParams; j++) {
@@ -101,26 +90,25 @@ function updateRisk() {
 		document.getElementById(riskID[i]+"_count").innerHTML = `${paramCount[i]}/${paramTotal[i]}`;
 		if (riskValue[i] && paramCount[i] >= paramMin ) {
 			const riskRate = ["&nbsp;<small>(Low)</small>", "&nbsp;<small>(Intermediate-Low)</small>","&nbsp;<small>(Intermediate-High)</small>", "&nbsp;<small>(High)</small>"];
-			
 			if ( riskValue[i] < 1.5 ) {
 			// If riskValue rounds to 1
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--low-green)";
-				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[0];		
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[0];		
 			} else if ( riskValue[i] < 2.5 ) {
 			// If riskValue rounds to 2
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-yellow)";
-				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[1];			
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[1];			
 			} else if ( riskValue[i] < 3.5 ) {
 			// If riskValue rounds to 2
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--mid-orange)";
-				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[2];			
-			} else if ( riskValue[i] >= 3.5 ) {
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[2];			
+			} else if ( riskValue[i] <= 3.5 ) {
 			// If riskValue rounds to 3
 				document.getElementById(riskID[i]).style.backgroundColor = "var(--high-red)";
-				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(2) + riskRate[3];		
+				document.getElementById(riskID[i]).innerHTML = riskValue[i].toFixed(0) + riskRate[3];		
 			}
 		} else { // Do if too few parameters were used.
-			document.getElementById(riskID[i]).innerHTML = `Use ${paramMin} parameters`;
+			document.getElementById(riskID[i]).innerHTML = `Use &geq; ${paramMin} parameters`;
 			document.getElementById(riskID[i]).style.backgroundColor = "white";
 		}
 		
@@ -221,13 +209,15 @@ function inputButton(name, val) {
 				var radio = document.querySelector(`input[type=radio][name=${name}]:checked`);
 				radio.checked = false;
 				testValue[i] = 0;
+				//console.log(`Updated test ${name} value to ${testValue[i]}!`)
 			} else {
 				testValue[i] = val;
+				//console.log(`Updated test ${name} value to ${testValue[i]}!`)
 			}
 		}
 	}
 	if ( numOfRisks ){updateRisk();}
-	//if ( numOfRisks_f ){updateRisk_f();}
+	if ( numOfRisks_f ){updateRisk_f();}
 	
 }
 
@@ -294,10 +284,13 @@ function collapseContent(btn) {
 		content.style.display = "none";
 	}
 	*/
+	//console.log(content.style.maxHeight);
 	if (content.style.maxHeight) {
 		content.style.maxHeight = null;
+		//console.log("Closed collapsible!");
 	} else {
 		content.style.maxHeight = content.scrollHeight + "px";
+		//console.log(`Opened collapsible! ${content.scrollHeight}`);
 	}
 }
 
@@ -312,52 +305,29 @@ function resetCalc() {
 		testValue[i] = 0;
 	}
 	updateRisk();
+	updateRisk_f();
 }
 
 function copyData() {
 	let copyStr = "";// = `Parameter\tDiagnosis\tValue`;
-	let paramTitle; let paramText; let testVal;
 	for( let i = 0; i<numOfParams; i++ ) {
-		testVal = testValue[i];
-		if (params[i].title_c) {
-			paramTitle = params[i].title_c;
-		} else {
-			paramTitle = params[i].title;
-		}
-		if (params[i].btnText_c[testValue[i]-1]) {
-			paramText = params[i].btnText_c[testValue[i]-1];
-		} else {
-			paramText = params[i].btnText[testValue[i]-1];
-		}
-		if ( testVal == 0 ) {
-			paramText = " ";
-		} 
-		// BNP exeption
-		if (params[i].title == "BNP") {
-			if (testValue[i-1]) {
-				testVal = 0;
-				paramText = " ";
-			}
-		}
-
-		copyStr += `\n${paramTitle}\t${paramText}\t${testVal}`;
+		copyStr += `\n${params[i].title}\t${params[i].btnText[testValue[i]-1]}\t${testValue[i]}`;
 	}
-	var riskGroup = ["Low risk", "Intermediate-Low risk", "Intermediate-High risk", "High risk"];
+	var riskGroup = ["Low risk", "Low-Intermediate risk", "High-Intermediate risk", "High risk"];
 	var risk_group;
 	copyStr += "\nRisk Group";
 	for ( let i = 0; i<riskID.length; i++) {
 		risk_group = riskGroup[Math.round(4*riskValue[i]/3)-1];
 		copyStr += `\n${riskTitle[i]}\t${risk_group}\t${riskValue[i].toFixed(2)}`;
 	}
-	//riskGroup = ["Low risk", "Low risk", "High risk"];
-	//copyStr += "\nFrench Risk Strategy";
-	//for ( let i = 0; i<riskID_f.length; i++) {
-	//	risk_group = riskGroup[Math.round(riskValue_f[i])];
-	//	copyStr += `\n${riskTitle_f[i]}\t${risk_group}\t${riskValue_f[i]}`;
-	//}
+	riskGroup = ["Low risk", "Low risk", "High risk"];
+	copyStr += "\nFrench Risk Strategy";
+	for ( let i = 0; i<riskID_f.length; i++) {
+		risk_group = riskGroup[Math.round(riskValue_f[i])];
+		copyStr += `\n${riskTitle_f[i]}\t${risk_group}\t${riskValue_f[i]}`;
+	}
 	navigator.clipboard.writeText(copyStr);
 }
-
 
  function goTo3() {
  	if (screen.width <= 700) {
@@ -441,6 +411,7 @@ function createTable() {
 			// Add counter to misc meta-group if meta-group tag is missing.
 			metaGroupCount["misc"] += 1;
 		}
+		console.log(`Meta-group ${meta_id} count ${metaGroupCount[meta_id]}`)
 		// Count title groups.
 		if (group_id = params[i].group) {	
 			if ( groupCount[group_id] ) {
@@ -514,7 +485,7 @@ function createTable_m() {
 	let groups = ["misc"];
 	let groupCount = {misc:0};
 	var group_id;
-	const max_btns = 4;
+	const max_btns = 3;
 	for(let i=0; i < numOfParams; i++) {
 		if (group_id = params[i].group) {	
 			if ( groupCount[group_id] ) {
@@ -542,7 +513,7 @@ function createTable_m() {
 				var title_row = document.createElement("TR");
 				title_row.setAttribute("class","btn-row");
 				var title_cell = createTitleCell(groupTitle[group_id]);
-				title_cell.setAttribute("colspan",max_btns);
+				title_cell.setAttribute("colspan","3");
 				title_row.appendChild(title_cell);
 			}
 		} else {
@@ -556,7 +527,7 @@ function createTable_m() {
 				var title_row = document.createElement("TR");
 				title_row.setAttribute("class","btn-row");
 				var title_cell = createTitleCell(param.title);
-				title_cell.setAttribute("colspan",max_btns);
+				title_cell.setAttribute("colspan","3");
 				title_row.appendChild(title_cell);
 		}
 		
