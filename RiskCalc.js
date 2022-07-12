@@ -90,7 +90,7 @@ title_p:"", btnText_p:[]};
 params.push(RAarea);
 // sPAP
 const sPAP = {name:"sPAP", group:"Imaging", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
-title:"TAPSE/sPAP", btnText:[">0.32 mm/mmHg","0.19-0.32 mm/mmHg","<0.19 mm/mmHg"],
+title:"TAPSE/sPAP", btnText:["TAPSE/sPAP >0.32 mm/mmHg","TAPSE/sPAP 0.19-0.32 mm/mmHg","TAPSE/sPAP <0.19 mm/mmHg"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
 params.push(sPAP);
@@ -103,19 +103,19 @@ params.push(Pericardial_Effusion);
 
 // RVEF
 const RVEF = {name:"RVEF", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
-title:"RVEF", btnText:[">54%","37-54%","<37%"],
+title:"RVEF", btnText:["RVEF >54%","RVEF 37-54%","RVEF <37%"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
 params.push(RVEF);
 // SVI
 const SVI_MRI = {name:"SVI_MRI", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
-title:"SVI", btnText:[">40 mL/m<sup>2</sup>","26-40 mL/m<sup>2</sup>","<26 mL/m<sup>2</sup>"],
+title:"SVI", btnText:["SVI >40 mL/m<sup>2</sup>","SVI 26-40 mL/m<sup>2</sup>","SVI <26 mL/m<sup>2</sup>"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
 params.push(SVI_MRI);
 // RVESVI
 const RVSVI = {name:"RVSVI", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
-title:"RVSVI", btnText:["<42 mL/m<sup>2</sup>","42-54 mL/m<sup>2</sup>",">54 mL/m<sup>2</sup>"],
+title:"RVSVI", btnText:["RVSVI <42 mL/m<sup>2</sup>","RVSVI 42-54 mL/m<sup>2</sup>","RVSVI >54 mL/m<sup>2</sup>"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
 params.push(RVSVI);
@@ -134,7 +134,7 @@ title_p:"", btnText_p:[]};
 params.push(CI);
 // SVI
 const SVI = {name:"SVI", group:"Heamodynamics", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
-title:"SVI", btnText:[">38 mL/m<sup>2</sup>","31-38 mL/m<sup>2</sup>","<31 mL/m<sup>2</sup>"],
+title:"SVI", btnText:["SVI >38 mL/m<sup>2</sup>","SVI 31-38 mL/m<sup>2</sup>","SVI <31 mL/m<sup>2</sup>"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
 params.push(SVI);
