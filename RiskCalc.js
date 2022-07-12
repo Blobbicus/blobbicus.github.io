@@ -13,7 +13,7 @@ let riskValue_f = new Array(numOfRisks_f).fill(0);
 let params = [];
 // Create params with buttons and add to array of params
 /*
-const PH_NAME = {name:"PH_NAME", group:"", meta_group:"", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
+const PH_NAME = {name:"PH_NAME", group:"", meta_group:"", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
 title:"", btnText:["BTN1","BTN2","BTN3"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
@@ -89,9 +89,9 @@ title_c:"", btnText_c:["< 18 cm^2","18-26 cm^2","> 26 cm^2"],
 title_p:"", btnText_p:[]};
 params.push(RAarea);
 // sPAP
-const sPAP = {name:"sPAP", group:"Imaging", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
+const sPAP = {name:"sPAP", group:"Imaging", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
 title:"TAPSE/sPAP", btnText:["TAPSE/sPAP >0.32 mm/mmHg","TAPSE/sPAP 0.19-0.32 mm/mmHg","TAPSE/sPAP <0.19 mm/mmHg"],
-title_c:"", btnText_c:["","",""],
+title_c:"TAPSE/sPAP", btnText_c:[">0.32 mm/mmHg","0.19-0.32 mm/mmHg","<0.19 mm/mmHg"],
 title_p:"", btnText_p:[]};
 params.push(sPAP);
 // Pericardial effusion
@@ -102,19 +102,19 @@ title_p:"", btnText_p:[]};
 params.push(Pericardial_Effusion);
 
 // RVEF
-const RVEF = {name:"RVEF", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
+const RVEF = {name:"RVEF", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
 title:"RVEF", btnText:["RVEF >54%","RVEF 37-54%","RVEF <37%"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
 params.push(RVEF);
 // SVI
-const SVI_MRI = {name:"SVI_MRI", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
+const SVI_MRI = {name:"SVI_MRI", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
 title:"SVI", btnText:["SVI >40 mL/m<sup>2</sup>","SVI 26-40 mL/m<sup>2</sup>","SVI <26 mL/m<sup>2</sup>"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
 params.push(SVI_MRI);
 // RVESVI
-const RVSVI = {name:"RVSVI", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
+const RVSVI = {name:"RVSVI", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
 title:"RVSVI", btnText:["RVSVI <42 mL/m<sup>2</sup>","RVSVI 42-54 mL/m<sup>2</sup>","RVSVI >54 mL/m<sup>2</sup>"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
@@ -133,7 +133,7 @@ title_c:"", btnText_c:[">= 2.5 l/min/m^2","2.0-2.4 l/min/m^2","< 2.0 l/min/m^2"]
 title_p:"", btnText_p:[]};
 params.push(CI);
 // SVI
-const SVI = {name:"SVI", group:"Heamodynamics", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0] value:[1,2,3], 
+const SVI = {name:"SVI", group:"Heamodynamics", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
 title:"SVI", btnText:["SVI >38 mL/m<sup>2</sup>","SVI 31-38 mL/m<sup>2</sup>","SVI <31 mL/m<sup>2</sup>"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
