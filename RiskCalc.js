@@ -133,7 +133,7 @@ title_c:"", btnText_c:[">= 2.5 l/min/m^2","2.0-2.4 l/min/m^2","< 2.0 l/min/m^2"]
 title_p:"", btnText_p:[]};
 params.push(CI);
 // SVI
-const SVI = {name:"SVI", group:"Heamodynamics", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
+const SVI = {name:"SVI", group:"Haemodynamics", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
 title:"SVI", btnText:["SVI >38 mL/m<sup>2</sup>","SVI 31-38 mL/m<sup>2</sup>","SVI <31 mL/m<sup>2</sup>"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
