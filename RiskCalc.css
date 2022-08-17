@@ -1,6 +1,8 @@
 :root {
   --low-green: #c6e0b4;
   --mid-yellow: #ffd966;
+  --frontpage-yellow:  #ffd961;
+  --frontpage-blue:  #17375e;
   --mid-yellow-orange: #fbb84a;
   --mid-orange: #f7972d;
   --high-red: #ff5050;
@@ -179,6 +181,22 @@ tr {
 }
 .reset-btn:hover {
   background-color: var(--highlight-blue);
+}
+.nav-btn {
+  height: 80px;
+  width: 220px;
+  font-size: 30px;
+  border-radius: 15px;
+  color: var(--frontpage-blue);
+  background-color: var(--frontpage-yellow);
+  margin-top: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-btn:hover {
+  background-color: var(--mid-yellow-orange);
 }
 /* End of sidebar style */
 

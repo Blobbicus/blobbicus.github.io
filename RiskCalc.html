@@ -11,6 +11,12 @@
  	<script type="text/javascript" src="RiskCalc.js"></script>
 </head>
 
+<script type="text/javascript">
+	function goBack() {
+		document.location = "index.html";
+	}
+</script>
+
 <body onload="createTable()">
 
 <header class="container">
@@ -30,6 +36,8 @@
 	<button class="reset-btn" onclick="resetCalc()">Reset</button>
 
 	<button class="reset-btn" onclick="goTo4()">View 4-strata model</button>
+
+	<button class="reset-btn" onclick="goBack()">Back</button>
 </section>
 
 
@@ -107,7 +115,7 @@
 	</tr>
 
 	<tr class="result-row">
-		<td class="result-cell" id="result_Full_count">0/14</td>
+		<td class="result-cell" id="result_Full_count">0/18</td>
 		<td class="title-cell" onmouseenter="highlightParam('result_Full')" onmouseout="highlightParam()">
 			Extended<small> (clinical observations and modifiable parameters)</small> <!--Using all available parameters-->
 		</td>
