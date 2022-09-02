@@ -16,10 +16,11 @@
   border-bottom: 1px solid var(--frontpage-yellow);
 }
 .header-title > p {
-  font-size: 24pt;
+  font-size: 30pt;
+  font-weight: bold;
 }
 .header-title > small {
-  font-size: 18pt;
+  font-size: 22pt;
 }
 .footer-title {
   border-top: 1px solid var(--frontpage-yellow);
