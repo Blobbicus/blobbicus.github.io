@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
  function go3Strata() {
- 	if (screen.width <= 700) {
+ 	if (screen.width <= 800) {
 	document.location = "RiskCalc_m.html";
 	} else {
 	document.location = "RiskCalc.html";
@@ -20,7 +20,7 @@
  }
 
  function go4Strata() {
- 	if (screen.width <= 700) {
+ 	if (screen.width <= 800) {
 	document.location = "RiskCalc4_m.html";
 	} else {
 	document.location = "RiskCalc4.html";
@@ -30,9 +30,9 @@
 
 
 
-<body style="justify-content: center;align-items: center; padding-top: 50px; background-color: var(--frontpage-blue);">
+<body style="dispay: flex;flex-direction: column;justify-content: center;align-items: center; padding-top: 20px; background-color: var(--frontpage-blue); height: 100vh;">
 
-<header class="page-header text-center", style="color: var(--frontpage-yellow)">
+<header class="page-header text-center header-title", style="color: var(--frontpage-yellow); min-height: 50px;">
 		<p>Pulmonary Arterial Hypertension Risk Score Calculator</p>
 		<small>based on ESC/ERS guidelines</small>
 		
@@ -66,11 +66,11 @@
 <br>
 
 <!-- Footer -->
-<footer class="page-footer font-small blue">
+<footer class="page-footer footer-title" style="min-height: 50px; margin-top: auto;">
 <div class="footer-copyright text-center", style="color: var(--frontpage-yellow)">
-	<p>Developed by Abdulla Ahmed<sup>1,2</sup>, Daniel Kempe<sup>1</sup>, Salaheldin Ahmed<sup>1,2</sup> and Göran Rådegran<sup>1,2</sup></p>
-	<p>Contact information: abdulla.ahmed@med.lu.se; goran.radegran@med.lu.se</p>
-	<p><sup>1</sup>The Department of Clinical Sciences Lund, The Section for Cardiology, Lund University, Lund, Swedem,</p>
+	<p><b>Developed by:</b> Abdulla Ahmed<sup>1,2</sup>, Daniel Kempe<sup>1</sup>, Salaheldin Ahmed<sup>1,2</sup> and Göran Rådegran<sup>1,2</sup></p>
+	<p><b>Contact information:</b> abdulla.ahmed@med.lu.se; goran.radegran@med.lu.se</p>
+	<p><sup>1</sup>The Department of Clinical Sciences Lund, The Section for Cardiology, Lund University, Lund, Sweden,</p>
 	<p><sup>2</sup>The Haemodyniamic Lab, The Section for Heart Failure and Valvular Disease, Heart and Lung Medicin, Skåne University Hospital, Lund, Sweden</p>
 </div>
 </footer>

@@ -10,6 +10,23 @@
   --highlight-blue: #3e6ca8;
   --highlight-active: lightgrey;
 }
+/* title page style */
+.header-title {
+  justify-content: center;
+  border-bottom: 1px solid var(--frontpage-yellow);
+}
+.header-title > p {
+  font-size: 24pt;
+}
+.header-title > small {
+  font-size: 18pt;
+}
+.footer-title {
+  border-top: 1px solid var(--frontpage-yellow);
+  padding-top: 10px;
+}
+/* title page style end */
+
 /* table styling start */
 table {
   width: 1px;
@@ -29,6 +46,7 @@ tr {
 }
 .btn-row > .title-cell {
   font-size: 14px;
+  font-weight: bold;
   vertical-align: middle;
   padding-left: 15px;
   border-right: 2px solid black;
@@ -46,6 +64,7 @@ tr {
   overflow: hidden;
   text-align: center;
   justify-content: center;
+  font-weight: bold;
 }
 .meta-cell > .meta-text {
   display: flex;

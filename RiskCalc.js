@@ -56,12 +56,12 @@ title:"Peak VO2", btnText:["Peak VO<sub>2</sub>&nbsp;> 15 ml/min/kg","Peak VO<su
 title_c:"", btnText_c:[">15 ml/min/kg","11-15 ml/min/kg","< 11 ml/min/kg"],
 title_p:"", btnText_p:[]};
 params.push(Peak_VO2);
-// Predicted VO2
+/* Predicted VO2
 const Predicted_VO2 = {name:"Predicted_VO2", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
 title:"Predicted VO_2", btnText:["> 65% of predicted","35 - 65% of predicted","< 35% of predicted"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
-//params.push(Predicted_VO2); Removed in new update
+params.push(Predicted_VO2); Removed in new update */
 // VE / VO_2 slope
 const VE_slope = {name:"VE_slope", group:"Cardiopulmonary", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
 title:"VE/VO2-slope", btnText:["VE/VO<sub>2</sub>-slope < 36","VE/VO<sub>2</sub>-slope 36 - 44.9","VE/VO<sub>2</sub>-slope &GreaterEqual; 45"],
@@ -109,7 +109,7 @@ title_p:"", btnText_p:[]};
 params.push(RVEF);
 // SVI
 const SVI_MRI = {name:"SVI_MRI", group:"cMRI", meta_group:"Modifiable", weight:[1,0,0,0], weight_f:[0,0], value:[1,2,3], 
-title:"SVI", btnText:["SVI >40 mL/m<sup>2</sup>","SVI 26-40 mL/m<sup>2</sup>","SVI <26 mL/m<sup>2</sup>"],
+title:"SVI", btnText:["SVI >40 mL/m<sup>2</sup>","SVI 26 - 40 mL/m<sup>2</sup>","SVI <26 mL/m<sup>2</sup>"],
 title_c:"", btnText_c:["","",""],
 title_p:"", btnText_p:[]};
 params.push(SVI_MRI);
@@ -147,7 +147,7 @@ params.push(SvO2);
 //
 // Set group titles
 const groupTitle = {Cardiopulmonary:"Cardiopulmonary excercise testing", Biochem:"Biochemical markers <sup>¤ # *</sup>", 
-			Imaging:"Echocardiography", cMRI:"cMRI", Haemodynamics:"Haemodynamics <sup>¤ #</sup>"};
+			Imaging:"Echocardiography <sup>¤</sup>", cMRI:"Cardiac megnetic resonance imaging", Haemodynamics:"Haemodynamics <sup>¤ #</sup>"};
 const metaGroupTitle = {Clinical:"Clinical Observations", Modifiable:"Modifiable Parameters"};
 
 // Number of params in array
